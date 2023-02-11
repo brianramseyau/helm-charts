@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  syslog-ng:
+  - apiVersion: v1
+    appVersion: 3.38.1
+    created: "2023-02-11T06:40:44.882234873Z"
+    description: Syslog-ng Helm Chart
+    digest: 4b9cbb36ad73aa36f3f93249e1d39004cd601e4bd27df8e5f0348927f5d7b248
+    keywords:
+    - Syslog
+    - syslog-ng
+    maintainers:
+    - name: absentbri
+    name: syslog-ng
+    sources:
+    - https://github.com/absentbri/helm-charts
+    urls:
+    - https://github.com/absentbri/helm-charts/releases/download/syslog-ng-0.0.1/syslog-ng-0.0.1.tgz
+    version: 0.0.1
+generated: "2023-02-11T06:40:44.882240773Z"
