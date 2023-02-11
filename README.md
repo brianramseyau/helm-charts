@@ -11,10 +11,10 @@ If you had already added this repo earlier, run `helm repo update` to retrieve
 the latest versions of the packages.  You can then run `helm search repo
 absentbri` to see the charts.
 
-To install the <chart-name> chart:
+To install the syslog-ng chart:
 
-    helm install my-<chart-name> absentbri/<chart-name>
+    helm install my-syslog-ng absentbri/syslog-ng
 
 To uninstall the chart:
 
-    helm delete my-<chart-name>
+    helm delete my-syslog-ng
