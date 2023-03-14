@@ -5,13 +5,16 @@ metadata:
   labels:
     {{- include "syslog-ng.labels" . | nindent 4 }}
 spec:
-  {{- if eq .Values.service.type "externalip" }}
+  {{- if eq (lower .Values.service.type) "externalip" }}
   {{- with .Values.service.externalIPs }}
   externalIPs:
     {{- toYaml . | nindent 3 }}
   {{- end }}
   {{- else}}
   type: {{ .Values.service.type }}
+  {{- if or (eq (lower .Values.service.type) "nodeport") (eq (lower .Values.service.type) "loadbalancer") }}
+  externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy }}
+  {{- end }}
   {{- end }}
   ports:
     - name: udp-port

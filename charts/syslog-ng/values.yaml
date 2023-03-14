@@ -72,6 +72,8 @@ securityContext: {}
 # syslog uses fixed ports tcp 601 and udp 514
 service:
   type: ClusterIP
+  # Only useful for NodePort or LoadBalancer
+  externalTrafficPolicy: Local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
