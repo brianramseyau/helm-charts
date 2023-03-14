@@ -8,7 +8,7 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-    - name: wget
+    - name: nc
       image: busybox
       command: ['sh']
       args: ['-c', 'echo "$(date +"%Y-%m-%dT%H:%M:%S%z") localhost none[0]: this is a new message on UDP" | nc -v {{ include "syslog-ng.fullname" . }} 601']
