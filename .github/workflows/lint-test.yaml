@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: "0"
 
       - name: Set up Helm
         uses: azure/setup-helm@v3
@@ -40,4 +40,4 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
-        run: ct install
+        run: ct install --target-branch ${{ github.event.repository.default_branch }}
