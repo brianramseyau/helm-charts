@@ -10,6 +10,6 @@ spec:
   containers:
     - name: nc
       image: busybox
-      command: ['sh']
-      args: ['-c', 'echo "$(date +"%Y-%m-%dT%H:%M:%S%z") localhost none[0]: this is a new message on UDP" | nc -v {{ include "syslog-ng.fullname" . }} 601']
+      command: ['nc']
+      args: ['-v', '{{ include "syslog-ng.fullname" . }}', '601']
   restartPolicy: Never
