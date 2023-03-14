@@ -31,14 +31,14 @@ persistence:
   size: 50Gi
   accessModes:
   - ReadWriteOnce
-  
+
 # Enable compressor to run a cron-job to compress files in /var/log/*-syslog older than retention_days
 # it also delete the plain-text file in order to keep the folder size as low as possible.
 # (if changes destination in server.config other than `/var/log/${YEAR}-${MONTH}-syslog` be aware you could break this)
 # NOTE: you must be using a storage driver that supports "ReadWriteMany" to use this
 compressor:
   enabled: false
-  #“At 04:25 on day 1 and 15, every month every year”
+  # “At 04:25 on day 1 and 15, every month every year”
   schedule: "25 4 1,15 * *"
   retention_days: 120
 
@@ -72,6 +72,8 @@ securityContext: {}
 # syslog uses fixed ports tcp 601 and udp 514
 service:
   type: ClusterIP
+  # Only useful for NodePort or LoadBalancer
+  externalTrafficPolicy: Local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -8,8 +8,8 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-    - name: wget
+    - name: nc
       image: busybox
-      command: ['wget']
-      args: ['{{ include "syslog-ng.fullname" . }}:{{ .Values.service.port }}']
+      command: ['sh']
+      args: ['-c', 'echo "$(date +"%Y-%m-%dT%H:%M:%S%z") localhost none[0]: this is a new message on UDP" | nc -v {{ include "syslog-ng.fullname" . }} 601']
   restartPolicy: Never
