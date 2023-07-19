@@ -3,7 +3,8 @@ replicaCount: 1
 image:
   repository: linuxserver/syslog-ng
   pullPolicy: IfNotPresent
-  tag: 3.38.1
+  # -- Overrides the image tag whose default is the chart's appVersion
+  tag: ""
 
 config: |
   @version: 3.38

@@ -46,6 +46,8 @@ spec:
           - mountPath: /var/log
             name: logs
         {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:
       - name: config
         configMap:
