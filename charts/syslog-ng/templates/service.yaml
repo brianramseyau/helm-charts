@@ -4,6 +4,13 @@ metadata:
   name: {{ include "syslog-ng.fullname" . }}
   labels:
     {{- include "syslog-ng.labels" . | nindent 4 }}
+  {{- with .Values.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- if eq (lower .Values.service.type) "externalip" }}
   {{- with .Values.service.externalIPs }}
