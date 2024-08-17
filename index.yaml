@@ -84,6 +84,16 @@ entries:
   wordle:
   - apiVersion: v2
     appVersion: legacy
+    created: "2024-08-17T05:28:43.063975524Z"
+    description: A Helm chart for modem7/wordle
+    digest: 47b5ca9544cd8dc290a231c8cb9d77927f2461c06d6dc2ccd243d7191a8e62bd
+    name: wordle
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.3/wordle-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: legacy
     created: "2024-08-17T05:09:02.758792795Z"
     description: A Helm chart for modem7/wordle
     digest: 297271c2aa47d7f4f152c7c70123b0893f9f4388b5751b18c1aee7a0ed2cdd7b
@@ -102,4 +112,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2024-08-17T05:09:02.758816089Z"
+generated: "2024-08-17T05:28:43.063999799Z"
