@@ -81,4 +81,15 @@ entries:
     urls:
     - https://github.com/absentbri/helm-charts/releases/download/syslog-ng-0.0.1/syslog-ng-0.0.1.tgz
     version: 0.0.1
-generated: "2024-08-10T09:32:23.851244931Z"
+  wordle:
+  - apiVersion: v2
+    appVersion: legacy
+    created: "2024-08-17T04:39:33.277223538Z"
+    description: A Helm chart for modem7/wordle
+    digest: 649f77ae088e7fadff3a695afc38d94c0c56430d049cb4ad6abd8e5a0fe4fbe3
+    name: wordle
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-08-17T04:39:33.277242714Z"
