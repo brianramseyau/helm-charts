@@ -1,0 +1,6 @@
+apiVersion: v2
+name: wordle
+description: A Helm chart for modem7/wordle
+type: application
+version: 0.0.1
+appVersion: "legacy"
