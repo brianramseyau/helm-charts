@@ -13,20 +13,20 @@ metadata:
   {{- end }}
 spec:
   entryPoints:
-  {{- with .Values.ingressRoute.entryPoints }}
-  - {{ . }}
-  {{- end }}
+    {{- range .Values.ingressRoute.entryPoints }}
+    - {{ . }}
+    {{- end }}
   routes:
-  {{- range .Values.ingressRoute.routes }}
-  - match: {{ .match }}
-    kind: {{ default "Rule" .kind }}
-    services:
-      {{- if .services }}
-      {{- toYaml .services | nindent 6 }}
-      {{- else }}
-      - kind: Service
-        name: {{ $fullName }}
-        port: {{ $svcPort }}
-      {{- end }}
-  {{- end }}
+    {{- range .Values.ingressRoute.routes }}
+    - match: {{ .match }}
+      kind: {{ default "Rule" .kind }}
+      services:
+        {{- if .services }}
+        {{- toYaml .services | nindent 8 }}
+        {{- else }}
+        - kind: Service
+          name: {{ $fullName }}
+          port: {{ $svcPort }}
+        {{- end }}
+    {{- end }}
 {{- end }}

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- fix: invalid IngressRoute entryPoints logic
+
 ## 0.1.0
 - feat: add IngressRoute resource for Traefik
 
