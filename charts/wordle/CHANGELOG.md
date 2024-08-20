@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.0
+- feat: add IngressRoute resource for Traefik
+
 ## 0.0.3
 - fix: incorrect healthcheck endpoint
 
