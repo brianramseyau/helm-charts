@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2
+- fix: incorrect values lookup for IngressRoute annotations
+
 ## 0.1.1
 - fix: invalid IngressRoute entryPoints logic
 

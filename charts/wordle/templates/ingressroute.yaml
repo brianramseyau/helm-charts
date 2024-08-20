@@ -7,7 +7,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "wordle.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with .Values.ingressRoute.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
