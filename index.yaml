@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  adguard-exporter:
+  - apiVersion: v2
+    appVersion: v1.1.16
+    created: "2024-09-06T06:51:57.740013799Z"
+    description: A Helm chart for henrywhitaker3/adguard-exporter
+    digest: 32ae3cd82c4414a744b9a9f191f9513133e9498a93c747284e4f14b98a497188
+    keywords:
+    - adguard home
+    - exporter
+    - prometheus
+    maintainers:
+    - name: brianramseyau
+    name: adguard-exporter
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.1/adguard-exporter-0.0.1.tgz
+    version: 0.0.1
   syslog-ng:
   - apiVersion: v1
     appVersion: 3.38.1
@@ -84,6 +103,22 @@ entries:
   wordle:
   - apiVersion: v2
     appVersion: legacy
+    created: "2024-09-06T06:51:57.840177102Z"
+    description: A Helm chart for modem7/wordle
+    digest: b5913aad4d54e1c09c2555fba18d507f1288e0985cdd9cde1e1ebfb99117783b
+    keywords:
+    - Wordle
+    maintainers:
+    - name: brianramseyau
+    name: wordle
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.1.3/wordle-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: legacy
     created: "2024-08-20T07:58:05.565291495Z"
     description: A Helm chart for modem7/wordle
     digest: aaffcd58617a9765e180bbce18aa9f8b7ae8298ead700eb767470a2d6da49f11
@@ -142,4 +177,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2024-08-20T07:58:05.565327453Z"
+generated: "2024-09-06T06:51:57.840231934Z"
