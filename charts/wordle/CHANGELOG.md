@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.3
+- fix: missing chart maintainers
+
 ## 0.1.2
 - fix: incorrect values lookup for IngressRoute annotations
 

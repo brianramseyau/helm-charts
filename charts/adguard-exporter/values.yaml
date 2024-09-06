@@ -1,10 +1,14 @@
+# Default values for agduard-exporter.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
 replicaCount: 1
 
 image:
-  repository: modem7/wordle
+  repository: ghcr.io/henrywhitaker3/adguard-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""  # options are: legacy or latest
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -37,7 +41,9 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 9618
+  name: metrics
+  # protocol: TCP
 
 ingress:
   enabled: false
@@ -46,7 +52,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: wordle.*
+    - host: adguard-exporter.*
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -54,19 +60,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
-# if using Traefik
-ingressRoute:
-  enabled: false
-  annotations: {}
-    # external-dns.alpha.kubernetes.io/target: traefik.example.com
-    # kubernetes.io/ingress.class: traefik
-  entryPoints: []
-    # - web
-    # - websecure
-  routes:
-    - match: "PathPrefix (`/`)"
-      # services: []
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -82,19 +75,12 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /healthz
-    port: http
+    path: /metrics
+    port: metrics
 readinessProbe:
   httpGet:
-    path: /healthz
-    port: http
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+    path: /metrics
+    port: metrics
 
 # Additional volumes on the output Deployment definition.
 volumes: []
@@ -114,3 +100,29 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  # you may pass in multiple, as a CSV list, add port if not using http/80 or https/443 (e.g. http://192.168.1.2:3000)
+  # e.g. ADGUARD_SERVERS=http://192.168.1.2,http://192.168.1.3,http://192.168.1.4
+  - name: ADGUARD_SERVERS
+    value: http://192.168.1.2
+  # you may pass in multiple, as a CSV list (order same as ADGUARD_SERVERS)
+  # ADGUARD_USERNAMES=$USERNAME1,$USERNAME2,$USERNAME3
+  - name: ADGUARD_USERNAMES
+    value: adguard
+  # you may pass in multiple, as a CSV list (order same as ADGUARD_SERVERS)
+  # ADGUARD_PASSWORDS=$PASSWORD1,$PASSWORD2,$PASSWORD3
+  - name: ADGUARD_PASSWORDS
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: adguard-secret
+        optional: true
+  # Optional, defaults to 30s
+  # - name: INTERVAL
+  #   value: 15s
+
+envFrom:
+  - secretRef:
+      name: adguard-secrets
+      optional: true
