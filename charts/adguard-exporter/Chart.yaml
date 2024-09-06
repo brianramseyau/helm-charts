@@ -4,3 +4,11 @@ description: A Helm chart for henrywhitaker3/adguard-exporter
 type: application
 version: 0.0.1
 appVersion: "v1.1.16"
+maintainers:
+  - name: brianramseyau
+sources:
+  - https://github.com/brianramseyau/helm-charts
+keywords:
+  - adguard home
+  - exporter
+  - prometheus
