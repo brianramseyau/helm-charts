@@ -4,7 +4,7 @@ image:
   repository: modem7/wordle
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "" # options are: legacy or latest
+  tag: ""  # options are: legacy or latest
 
 imagePullSecrets: []
 nameOverride: ""
