@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "wordle.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "wordle.fullname" . }}:{{ .Values.service.port }}/healthz']
   restartPolicy: Never
