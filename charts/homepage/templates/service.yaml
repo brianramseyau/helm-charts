@@ -6,7 +6,17 @@ metadata:
   labels:
     {{- include "homepage.labels" . | nindent 4 }}
   annotations:
+  {{- if and (eq .Values.ingress.className "traefik") (gt (int .Values.replicaCount) 1) }}
+    traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
+    traefik.ingress.kubernetes.io/service.sticky.cookie.httponly: "true"
+    traefik.ingress.kubernetes.io/service.sticky.cookie.secure: "true"
+    traefik.ingress.kubernetes.io/service.sticky.cookie.samesite: "none"
+    {{- if .Values.service.annotations }}
+      {{- toYaml .Values.service.annotations | nindent 4 }}
+    {{- end }}
+  {{- else }}
     {{- toYaml .Values.service.annotations | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
