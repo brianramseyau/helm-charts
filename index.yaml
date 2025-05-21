@@ -22,6 +22,28 @@ entries:
   homepage:
   - apiVersion: v2
     appVersion: v1.2.0
+    created: "2025-05-21T03:07:11.055352758Z"
+    description: A Helm chart for gethomepage/homepage based on the official docs
+      for Kubernetes Installation docs
+    digest: c3da583266d5c6f461b6d1d485ef27384fe249aac9d93d018e589557567a866f
+    home: https://gethomepage.dev
+    keywords:
+    - homepage
+    - homepage.dev
+    - gethomepage
+    - homepage helm chart
+    - homepage helm chart for kubernetes
+    maintainers:
+    - name: brianramseyau
+    name: homepage
+    sources:
+    - https://gethomepage.dev/installation/k8s
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/homepage-0.0.2/homepage-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v1.2.0
     created: "2025-05-21T02:25:54.091558149Z"
     description: A Helm chart for gethomepage/homepage based on the official docs
       for Kubernetes Installation docs
@@ -200,4 +222,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-21T02:25:54.091591231Z"
+generated: "2025-05-21T03:07:11.055399578Z"
