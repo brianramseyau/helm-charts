@@ -1,0 +1,17 @@
+apiVersion: v2
+name: homepage
+description: A Helm chart for gethomepage/homepage based on the official docs for Kubernetes Installation docs
+type: application
+home: https://gethomepage.dev
+maintainers:
+  - name: brianramseyau
+sources:
+  - https://gethomepage.dev/installation/k8s
+keywords:
+  - homepage
+  - homepage.dev
+  - gethomepage
+  - homepage helm chart
+  - homepage helm chart for kubernetes
+version: 0.0.1
+appVersion: 'v1.2.0'
