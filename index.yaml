@@ -19,6 +19,29 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.1/adguard-exporter-0.0.1.tgz
     version: 0.0.1
+  homepage:
+  - apiVersion: v2
+    appVersion: v1.2.0
+    created: "2025-05-21T02:25:54.091558149Z"
+    description: A Helm chart for gethomepage/homepage based on the official docs
+      for Kubernetes Installation docs
+    digest: 819c812f0e2a7b1ed684e733c76aa914e81d2e625ed8b30bf09c30f435ea2cec
+    home: https://gethomepage.dev
+    keywords:
+    - homepage
+    - homepage.dev
+    - gethomepage
+    - homepage helm chart
+    - homepage helm chart for kubernetes
+    maintainers:
+    - name: brianramseyau
+    name: homepage
+    sources:
+    - https://gethomepage.dev/installation/k8s
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/homepage-0.0.1/homepage-0.0.1.tgz
+    version: 0.0.1
   syslog-ng:
   - apiVersion: v1
     appVersion: 3.38.1
@@ -177,4 +200,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2024-09-06T06:51:57.840231934Z"
+generated: "2025-05-21T02:25:54.091591231Z"
