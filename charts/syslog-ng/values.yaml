@@ -4,7 +4,7 @@ image:
   repository: linuxserver/syslog-ng
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart's appVersion
-  tag: ""
+  tag: ''
 
 config: |
   @version: 3.38
@@ -31,7 +31,7 @@ persistence:
   # storageClassName: ""
   size: 50Gi
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
 
 # Enable compressor to run a cron-job to compress files in /var/log/*-syslog older than retention_days
 # it also delete the plain-text file in order to keep the folder size as low as possible.
@@ -40,12 +40,12 @@ persistence:
 compressor:
   enabled: false
   # “At 04:25 on day 1 and 15, every month every year”
-  schedule: "25 4 1,15 * *"
+  schedule: '25 4 1,15 * *'
   retention_days: 120
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -54,15 +54,17 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: ''
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
 # Syslog-ng manages its own capabilities as well, just make sure the two doesn't collide.
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -77,8 +79,9 @@ service:
   externalTrafficPolicy: Local
   labels: {}
   annotations: {}
-  
-resources: {}
+
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
