@@ -11,5 +11,5 @@ spec:
     - name: nc
       image: busybox
       command: ['nc']
-      args: ['-v', '{{ include "syslog-ng.fullname" . }}', '601']
+      args: ['-zv', '{{ include "syslog-ng.fullname" . }}', '601']
   restartPolicy: Never
