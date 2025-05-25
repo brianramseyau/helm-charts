@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.6
+- feat: adds helm docs
+
 ## 0.0.5
 - feat: adds arbitrary labels and annotations to service
 - chore: fix outdated references
