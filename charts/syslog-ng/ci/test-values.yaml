@@ -1,3 +1,6 @@
+persistence:
+  enable: false
+
 config: |
   @version: 3.35
   @include "scl.conf"
