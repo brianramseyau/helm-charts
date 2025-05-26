@@ -1,6 +1,6 @@
 # adguard-exporter
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.1.16](https://img.shields.io/badge/AppVersion-v1.1.16-informational?style=flat-square)
+![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.2.0](https://img.shields.io/badge/AppVersion-v1.2.0-informational?style=flat-square)
 
 A Helm chart for henrywhitaker3/adguard-exporter
 
@@ -44,9 +44,9 @@ A Helm chart for henrywhitaker3/adguard-exporter
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
 | resources | object | `{}` |  |
-| livenessProbe.httpGet.path | string | `"/metrics"` |  |
+| livenessProbe.httpGet.path | string | `"/healthz"` |  |
 | livenessProbe.httpGet.port | string | `"metrics"` |  |
-| readinessProbe.httpGet.path | string | `"/metrics"` |  |
+| readinessProbe.httpGet.path | string | `"/readyz"` |  |
 | readinessProbe.httpGet.port | string | `"metrics"` |  |
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
