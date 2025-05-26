@@ -2,8 +2,8 @@ apiVersion: v2
 name: adguard-exporter
 description: A Helm chart for henrywhitaker3/adguard-exporter
 type: application
-version: 0.0.2
-appVersion: 'v1.1.16'
+version: 0.0.3
+appVersion: 'v1.2.0'
 maintainers:
   - name: brianramseyau
 sources:
