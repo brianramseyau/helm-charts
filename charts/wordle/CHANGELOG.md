@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.4
+- feat: adds helm docs
+
 ## 0.1.3
 - fix: missing chart maintainers
 

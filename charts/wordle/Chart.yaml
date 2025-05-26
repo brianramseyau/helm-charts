@@ -2,8 +2,8 @@ apiVersion: v2
 name: wordle
 description: A Helm chart for modem7/wordle
 type: application
-version: 0.1.3
-appVersion: "legacy"
+version: 0.1.4
+appVersion: 'legacy'
 maintainers:
   - name: brianramseyau
 sources:
