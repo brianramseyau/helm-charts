@@ -3,6 +3,24 @@ entries:
   adguard-exporter:
   - apiVersion: v2
     appVersion: v1.1.16
+    created: "2025-05-26T00:41:30.420031699Z"
+    description: A Helm chart for henrywhitaker3/adguard-exporter
+    digest: 843b106cf741bfaa7fe1065d61ea16ada7675258fa049082687cf2ef187c2f6e
+    keywords:
+    - adguard home
+    - exporter
+    - prometheus
+    maintainers:
+    - name: brianramseyau
+    name: adguard-exporter
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.2/adguard-exporter-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v1.1.16
     created: "2024-09-06T06:51:57.740013799Z"
     description: A Helm chart for henrywhitaker3/adguard-exporter
     digest: 32ae3cd82c4414a744b9a9f191f9513133e9498a93c747284e4f14b98a497188
@@ -20,6 +38,28 @@ entries:
     - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.1/adguard-exporter-0.0.1.tgz
     version: 0.0.1
   homepage:
+  - apiVersion: v2
+    appVersion: v1.2.0
+    created: "2025-05-26T00:41:30.575762665Z"
+    description: A Helm chart for gethomepage/homepage based on the official docs
+      for Kubernetes Installation docs
+    digest: 93d9253b2f97477e94cc287cfbf777c8452f43a5d6859cc83db3d38b75a3a696
+    home: https://gethomepage.dev
+    keywords:
+    - homepage
+    - homepage.dev
+    - gethomepage
+    - homepage helm chart
+    - homepage helm chart for kubernetes
+    maintainers:
+    - name: brianramseyau
+    name: homepage
+    sources:
+    - https://gethomepage.dev/installation/k8s
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/homepage-0.0.3/homepage-0.0.3.tgz
+    version: 0.0.3
   - apiVersion: v2
     appVersion: v1.2.0
     created: "2025-05-21T03:07:11.055352758Z"
@@ -65,6 +105,22 @@ entries:
     - https://github.com/brianramseyau/helm-charts/releases/download/homepage-0.0.1/homepage-0.0.1.tgz
     version: 0.0.1
   syslog-ng:
+  - apiVersion: v1
+    appVersion: 3.38.1
+    created: "2025-05-26T00:41:30.767758121Z"
+    description: Syslog-ng Helm Chart
+    digest: dd7813ad459c24148cedcee1d9e137ce8ce3725dd22e70d0b6f4068e16e714f3
+    keywords:
+    - Syslog
+    - syslog-ng
+    maintainers:
+    - name: brianramseyau
+    name: syslog-ng
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/syslog-ng-0.0.6/syslog-ng-0.0.6.tgz
+    version: 0.0.6
   - apiVersion: v1
     appVersion: 3.38.1
     created: "2024-08-10T09:32:23.851224322Z"
@@ -148,6 +204,22 @@ entries:
   wordle:
   - apiVersion: v2
     appVersion: legacy
+    created: "2025-05-26T00:41:30.940860929Z"
+    description: A Helm chart for modem7/wordle
+    digest: 457020e3d917ca8292b661fb13fbec045b5c9917a22e644802389b342bcea54f
+    keywords:
+    - Wordle
+    maintainers:
+    - name: brianramseyau
+    name: wordle
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.1.4/wordle-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: legacy
     created: "2024-09-06T06:51:57.840177102Z"
     description: A Helm chart for modem7/wordle
     digest: b5913aad4d54e1c09c2555fba18d507f1288e0985cdd9cde1e1ebfb99117783b
@@ -222,4 +294,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-21T03:07:11.055399578Z"
+generated: "2025-05-26T00:41:30.940964371Z"
