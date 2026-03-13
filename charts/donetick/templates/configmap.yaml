@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "donetick.fullname" . }}-config
+  namespace: {{ include "donetick.namespace" . }}
+  labels:
+    {{- include "donetick.labels" . | nindent 4 }}
+data:
+  selfhosted.yaml: |
+    name: "selfhosted"
+    is_done_tick_dot_com: false
+    is_user_creation_disabled: {{ .Values.config.isUserCreationDisabled }}
+    telegram:
+      token: ""
+    pushover:
+      token: ""
+    database:
+      {{- if .Values.postgresql.enabled }}
+      type: "postgres"
+      migration: true
+      host: {{ include "donetick.postgresql.host" . | quote }}
+      port: {{ .Values.database.postgresql.port }}
+      user: {{ .Values.postgresql.auth.username | quote }}
+      password: {{ .Values.postgresql.auth.password | quote }}
+      name: {{ .Values.postgresql.auth.database | quote }}
+      {{- else }}
+      type: "sqlite"
+      migration: true
+      host: ""
+      port: ""
+      user: ""
+      password: ""
+      name: ""
+      {{- end }}
+    jwt:
+      secret: {{ include "donetick.jwtSecret" . | trim | quote }}
+      session_time: 168h
+      max_refresh: 1440h
+    server:
+      port: {{ .Values.service.port }}
+      read_timeout: {{ .Values.config.server.readTimeout | quote }}
+      write_timeout: {{ .Values.config.server.writeTimeout | quote }}
+      rate_period: {{ .Values.config.server.ratePeriod | quote }}
+      rate_limit: {{ .Values.config.server.rateLimit }}
+      cors_allow_origins:
+        {{- range .Values.config.server.corsAllowOrigins }}
+        - {{ . | quote }}
+        {{- end }}
+      serve_frontend: {{ .Values.config.server.serveFrontend }}
+    logging:
+      level: {{ .Values.config.logging.level | quote }}
+      encoding: {{ .Values.config.logging.encoding | quote }}
+      development: {{ .Values.config.logging.development }}
+    scheduler_jobs:
+      due_job: {{ .Values.config.schedulerJobs.dueJob | quote }}
+      overdue_job: {{ .Values.config.schedulerJobs.overdueJob | quote }}
+      pre_due_job: {{ .Values.config.schedulerJobs.preDueJob | quote }}
+    email:
+      host: {{ .Values.config.email.host | quote }}
+      port: {{ .Values.config.email.port | quote }}
+      key: {{ .Values.config.email.key | quote }}
+      email: {{ .Values.config.email.email | quote }}
+      user: {{ .Values.config.email.user | quote }}
+      appHost: {{ .Values.config.email.appHost | quote }}
+    oauth2:
+      client_id: {{ .Values.config.oauth2.clientId | quote }}
+      client_secret: {{ .Values.config.oauth2.clientSecret | quote }}
+      auth_url: {{ .Values.config.oauth2.authUrl | quote }}
+      token_url: {{ .Values.config.oauth2.tokenUrl | quote }}
+      user_info_url: {{ .Values.config.oauth2.userInfoUrl | quote }}
+      redirect_url: {{ .Values.config.oauth2.redirectUrl | quote }}
+      name: {{ .Values.config.oauth2.name | quote }}
+    realtime:
+      enabled: {{ .Values.config.realtime.enabled }}
+      sse_enabled: {{ .Values.config.realtime.sseEnabled }}
+      heartbeat_interval: {{ .Values.config.realtime.heartbeatInterval | quote }}
+      connection_timeout: {{ .Values.config.realtime.connectionTimeout | quote }}
+      max_connections: {{ .Values.config.realtime.maxConnections }}
+      max_connections_per_user: {{ .Values.config.realtime.maxConnectionsPerUser }}
+      event_queue_size: {{ .Values.config.realtime.eventQueueSize }}
+      cleanup_interval: {{ .Values.config.realtime.cleanupInterval | quote }}
+      stale_threshold: {{ .Values.config.realtime.staleThreshold | quote }}
+      enable_compression: {{ .Values.config.realtime.enableCompression }}
+      enable_stats: {{ .Values.config.realtime.enableStats }}
+      allowed_origins:
+        {{- range .Values.config.realtime.allowedOrigins }}
+        - {{ . | quote }}
+        {{- end }}
+    storage:
+      storage_type: {{ .Values.storage.mode | quote }}
+      {{- if eq .Values.storage.mode "local" }}
+      bucket_name: ""
+      region: ""
+      base_path: {{ .Values.storage.local.basePath | quote }}
+      access_key: ""
+      secret_key: ""
+      endpoint: ""
+      public_host: ""
+      {{- else }}
+      bucket_name: {{ .Values.storage.remote.bucketName | quote }}
+      region: {{ .Values.storage.remote.region | quote }}
+      base_path: {{ .Values.storage.remote.basePath | quote }}
+      {{- if and .Values.minio.enabled (eq .Values.storage.remote.endpoint "") }}
+      access_key: {{ .Values.minio.rootUser | quote }}
+      secret_key: {{ .Values.minio.rootPassword | quote }}
+      endpoint: {{ printf "http://%s:%v" (include "donetick.minio.fullname" .) .Values.minio.service.apiPort | quote }}
+      {{- else }}
+      access_key: {{ .Values.storage.remote.accessKey | quote }}
+      secret_key: {{ .Values.storage.remote.secretKey | quote }}
+      endpoint: {{ .Values.storage.remote.endpoint | quote }}
+      {{- end }}
+      public_host: {{ .Values.storage.remote.publicHost | quote }}
+      max_user_storage: {{ .Values.storage.remote.maxUserStorage }}
+      max_file_size: {{ .Values.storage.remote.maxFileSize }}
+      {{- end }}

@@ -1,0 +1,37 @@
+{{- if and (not .Values.postgresql.enabled) .Values.database.sqlite.persistence.enabled (not .Values.database.sqlite.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "donetick.fullname" . }}-sqlite
+  namespace: {{ include "donetick.namespace" . }}
+  labels:
+    {{- include "donetick.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    {{- toYaml .Values.database.sqlite.persistence.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.database.sqlite.persistence.size }}
+  {{- if .Values.database.sqlite.persistence.storageClass }}
+  storageClassName: {{ .Values.database.sqlite.persistence.storageClass }}
+  {{- end }}
+---
+{{- end }}
+{{- if and (eq .Values.storage.mode "local") .Values.storage.local.persistence.enabled (not .Values.storage.local.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "donetick.fullname" . }}-assets
+  namespace: {{ include "donetick.namespace" . }}
+  labels:
+    {{- include "donetick.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    {{- toYaml .Values.storage.local.persistence.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.local.persistence.size }}
+  {{- if .Values.storage.local.persistence.storageClass }}
+  storageClassName: {{ .Values.storage.local.persistence.storageClass }}
+  {{- end }}
+{{- end }}
