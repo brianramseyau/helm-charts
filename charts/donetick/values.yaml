@@ -76,7 +76,8 @@ env:
 jwt:
   existingSecret: ''
   secretKey: secret
-  secret: '' # Only used if existingSecret is not set
+  # Only used if existingSecret is not set
+  secret: ''
 
 database:
   sqlite:
@@ -93,7 +94,8 @@ database:
     port: 5432
 
 storage:
-  mode: local # local or remote
+  # local or remote
+  mode: local
   local:
     basePath: /app/assets
     persistence:
