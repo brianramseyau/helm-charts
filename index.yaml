@@ -55,6 +55,33 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.1/adguard-exporter-0.0.1.tgz
     version: 0.0.1
+  donetick:
+  - apiVersion: v2
+    appVersion: v0.1.74
+    created: "2026-03-13T02:39:58.313209954Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 16.7.27
+    description: A Helm chart for Donetick self-hosted deployments
+    digest: 516e45c23942e7b61447cb8394fc1d505ced06d69257645b444da445bfa050d7
+    home: https://github.com/donetick/donetick
+    keywords:
+    - donetick
+    - chores
+    - tasks
+    - selfhosted
+    maintainers:
+    - name: brianramseyau
+    name: donetick
+    sources:
+    - https://github.com/donetick/donetick
+    - https://hub.docker.com/r/donetick/donetick
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/donetick-0.1.74/donetick-0.1.74.tgz
+    version: 0.1.74
   homepage:
   - apiVersion: v2
     appVersion: v1.2.0
@@ -312,4 +339,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-26T05:41:59.907528367Z"
+generated: "2026-03-13T02:39:58.313255096Z"
