@@ -59,8 +59,13 @@ data:
       user: {{ .Values.config.email.user | quote }}
       appHost: {{ .Values.config.email.appHost | quote }}
     oauth2:
+      {{- if .Values.config.oauth2.existingSecret }}
+      client_id: $DT_OAUTH2_CLIENT_ID
+      client_secret: $DT_OAUTH2_CLIENT_SECRET
+      {{- else }}
       client_id: {{ .Values.config.oauth2.clientId | quote }}
       client_secret: {{ .Values.config.oauth2.clientSecret | quote }}
+      {{- end }}
       auth_url: {{ .Values.config.oauth2.authUrl | quote }}
       token_url: {{ .Values.config.oauth2.tokenUrl | quote }}
       user_info_url: {{ .Values.config.oauth2.userInfoUrl | quote }}

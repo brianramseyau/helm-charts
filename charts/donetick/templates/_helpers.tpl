@@ -95,7 +95,7 @@ When an existing ConfigMap is present, reuse its current value to avoid churn.
 {{- if $provided -}}
 {{- $provided -}}
 {{- else if .Values.jwt.existingSecret -}}
-{{- "managed-by-existing-secret" -}}
+{{- "$DT_JWT_SECRET" -}}
 {{- else -}}
 {{- $configName := printf "%s-config" (include "donetick.fullname" .) -}}
 {{- $existing := lookup "v1" "ConfigMap" (include "donetick.namespace" .) $configName -}}

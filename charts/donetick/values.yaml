@@ -75,7 +75,7 @@ env:
 
 jwt:
   existingSecret: ''
-  secretKey: secret
+  secretKey: jwtSecret
   # Only used if existingSecret is not set
   secret: ''
 
@@ -90,7 +90,7 @@ database:
       size: 5Gi
       storageClass: ''
   postgresql:
-    host: ''
+    host: '{{ .Release.Name }}-postgresql'
     port: 5432
 
 storage:
@@ -146,6 +146,9 @@ config:
     user: ''
     appHost: ''
   oauth2:
+    existingSecret: ''
+    clientIdKey: clientId
+    clientSecretKey: clientSecret
     clientId: ''
     clientSecret: ''
     authUrl: ''
