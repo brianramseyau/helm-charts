@@ -7,7 +7,7 @@ image:
 
 imagePullSecrets: []
 
-namespaceOverride: donetick
+namespaceOverride: ''
 
 serviceAccount:
   create: true
@@ -211,7 +211,6 @@ affinity: {}
 
 postgresql:
   enabled: false
-  namespaceOverride: donetick
   auth:
     username: donetick
     password: donetick
