@@ -90,7 +90,7 @@ database:
       size: 5Gi
       storageClass: ''
   postgresql:
-    host: ''
+    host: '{{ .Release.Name }}-postgresql'
     port: 5432
 
 storage:
