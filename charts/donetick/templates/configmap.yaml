@@ -10,10 +10,6 @@ data:
     name: "selfhosted"
     is_done_tick_dot_com: false
     is_user_creation_disabled: {{ .Values.config.isUserCreationDisabled }}
-    telegram:
-      token: ""
-    pushover:
-      token: ""
     database:
       {{- if .Values.postgresql.enabled }}
       type: "postgres"
@@ -113,3 +109,7 @@ data:
       max_user_storage: {{ .Values.storage.remote.maxUserStorage }}
       max_file_size: {{ .Values.storage.remote.maxFileSize }}
       {{- end }}
+    telegram:
+      token: {{ .Values.config.telegram.token | quote }}
+    pushover:
+      token: {{ .Values.config.pushover.token | quote }}

@@ -167,6 +167,10 @@ config:
     enableStats: true
     allowedOrigins:
       - '*'
+  telegram:
+    token: ''
+  pushover:
+    token: ''
 
 minio:
   enabled: false
