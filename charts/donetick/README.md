@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -76,7 +76,7 @@ A Helm chart for Donetick self-hosted deployments
 | env[1].name | string | `"TZ"` |  |
 | env[1].value | string | `"Etc/UTC"` |  |
 | jwt.existingSecret | string | `""` |  |
-| jwt.secretKey | string | `"secret"` |  |
+| jwt.secretKey | string | `"jwtSecret"` |  |
 | jwt.secret | string | `""` |  |
 | database.sqlite.path | string | `"/donetick-data/donetick.db"` |  |
 | database.sqlite.persistence.enabled | bool | `true` |  |
@@ -84,7 +84,7 @@ A Helm chart for Donetick self-hosted deployments
 | database.sqlite.persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | database.sqlite.persistence.size | string | `"5Gi"` |  |
 | database.sqlite.persistence.storageClass | string | `""` |  |
-| database.postgresql.host | string | `""` |  |
+| database.postgresql.host | string | `"{{ .Release.Name }}-postgresql"` |  |
 | database.postgresql.port | int | `5432` |  |
 | storage.mode | string | `"local"` |  |
 | storage.local.basePath | string | `"/app/assets"` |  |
@@ -125,6 +125,9 @@ A Helm chart for Donetick self-hosted deployments
 | config.email.email | string | `""` |  |
 | config.email.user | string | `""` |  |
 | config.email.appHost | string | `""` |  |
+| config.oauth2.existingSecret | string | `""` |  |
+| config.oauth2.clientIdKey | string | `"clientId"` |  |
+| config.oauth2.clientSecretKey | string | `"clientSecret"` |  |
 | config.oauth2.clientId | string | `""` |  |
 | config.oauth2.clientSecret | string | `""` |  |
 | config.oauth2.authUrl | string | `""` |  |
