@@ -75,7 +75,7 @@ env:
 
 jwt:
   existingSecret: ''
-  secretKey: secret
+  secretKey: jwtSecret
   # Only used if existingSecret is not set
   secret: ''
 
