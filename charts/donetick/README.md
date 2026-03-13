@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -84,6 +84,7 @@ A Helm chart for Donetick self-hosted deployments
 | database.sqlite.persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | database.sqlite.persistence.size | string | `"5Gi"` |  |
 | database.sqlite.persistence.storageClass | string | `""` |  |
+| database.sqlite.persistence.labels | object | `{}` |  |
 | database.postgresql.host | string | `"{{ .Release.Name }}-postgresql"` |  |
 | database.postgresql.port | int | `5432` |  |
 | storage.mode | string | `"local"` |  |
@@ -93,6 +94,7 @@ A Helm chart for Donetick self-hosted deployments
 | storage.local.persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | storage.local.persistence.size | string | `"1Gi"` |  |
 | storage.local.persistence.storageClass | string | `""` |  |
+| storage.local.persistence.labels | object | `{}` |  |
 | storage.remote.bucketName | string | `"donetick"` |  |
 | storage.remote.region | string | `"us-east-1"` |  |
 | storage.remote.basePath | string | `"assets"` |  |
