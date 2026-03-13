@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.3
+
+- Added configurable labels for the SQLite persistence PVC via `database.sqlite.persistence.labels`.
+- Added configurable labels for the local storage PVC via `storage.local.persistence.labels`.
+
 ## 0.0.2
 
 - Added OAuth2 secret reference support via `config.oauth2.existingSecret`.

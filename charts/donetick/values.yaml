@@ -89,6 +89,7 @@ database:
         - ReadWriteOnce
       size: 5Gi
       storageClass: ''
+      labels: {}
   postgresql:
     host: '{{ .Release.Name }}-postgresql'
     port: 5432
@@ -105,6 +106,7 @@ storage:
         - ReadWriteOnce
       size: 1Gi
       storageClass: ''
+      labels: {}
   remote:
     bucketName: donetick
     region: us-east-1
