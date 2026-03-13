@@ -54,6 +54,18 @@ spec:
                   name: {{ .Values.jwt.existingSecret | quote }}
                   key: {{ .Values.jwt.secretKey | quote }}
             {{- end }}
+            {{- if .Values.config.oauth2.existingSecret }}
+            - name: DT_OAUTH2_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.oauth2.existingSecret | quote }}
+                  key: {{ .Values.config.oauth2.clientIdKey | quote }}
+            - name: DT_OAUTH2_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.oauth2.existingSecret | quote }}
+                  key: {{ .Values.config.oauth2.clientSecretKey | quote }}
+            {{- end }}
             {{- if not .Values.postgresql.enabled }}
             - name: DT_SQLITE_PATH
               value: {{ .Values.database.sqlite.path | quote }}

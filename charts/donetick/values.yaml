@@ -146,6 +146,9 @@ config:
     user: ''
     appHost: ''
   oauth2:
+    existingSecret: ''
+    clientIdKey: clientId
+    clientSecretKey: clientSecret
     clientId: ''
     clientSecret: ''
     authUrl: ''
