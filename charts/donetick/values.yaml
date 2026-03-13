@@ -99,7 +99,7 @@ storage:
   local:
     basePath: /app/assets
     persistence:
-      enabled: false
+      enabled: true
       existingClaim: ''
       accessModes:
         - ReadWriteOnce
