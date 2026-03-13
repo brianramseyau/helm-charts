@@ -1,0 +1,22 @@
+apiVersion: v2
+name: donetick
+description: A Helm chart for Donetick self-hosted deployments
+type: application
+version: 0.1.74
+appVersion: 'v0.1.74'
+home: https://github.com/donetick/donetick
+maintainers:
+  - name: brianramseyau
+sources:
+  - https://github.com/donetick/donetick
+  - https://hub.docker.com/r/donetick/donetick
+keywords:
+  - donetick
+  - chores
+  - tasks
+  - selfhosted
+dependencies:
+  - name: postgresql
+    version: 16.7.27
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: postgresql.enabled

@@ -1,0 +1,13 @@
+Donetick has been deployed.
+
+Namespace: {{ include "donetick.namespace" . }}
+Service: {{ include "donetick.fullname" . }}
+Port: {{ .Values.service.port }}
+
+If ingress is enabled, open one of the configured ingress hosts.
+
+If ingress is disabled, port-forward with:
+  kubectl -n {{ include "donetick.namespace" . }} port-forward svc/{{ include "donetick.fullname" . }} 2021:{{ .Values.service.port }}
+
+Then open:
+  http://127.0.0.1:2021

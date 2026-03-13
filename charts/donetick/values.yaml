@@ -1,0 +1,221 @@
+replicaCount: 1
+
+image:
+  repository: donetick/donetick
+  pullPolicy: IfNotPresent
+  tag: ''
+
+imagePullSecrets: []
+
+namespaceOverride: ''
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ''
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 2021
+
+ingress:
+  enabled: false
+  className: ''
+  annotations: {}
+  hosts:
+    - host: donetick.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /api/v1/health
+    port: http
+  timeoutSeconds: 5
+  periodSeconds: 60
+  failureThreshold: 3
+readinessProbe:
+  httpGet:
+    path: /api/v1/health
+    port: http
+  timeoutSeconds: 5
+  periodSeconds: 30
+  failureThreshold: 3
+startupProbe:
+  enabled: true
+  httpGet:
+    path: /api/v1/health
+    port: http
+  timeoutSeconds: 5
+  periodSeconds: 10
+  failureThreshold: 6
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+env:
+  - name: DT_ENV
+    value: selfhosted
+  - name: TZ
+    value: Etc/UTC
+
+jwt:
+  existingSecret: ''
+  secretKey: secret
+  # Only used if existingSecret is not set
+  secret: ''
+
+database:
+  sqlite:
+    path: /donetick-data/donetick.db
+    persistence:
+      enabled: true
+      existingClaim: ''
+      accessModes:
+        - ReadWriteOnce
+      size: 5Gi
+      storageClass: ''
+  postgresql:
+    host: ''
+    port: 5432
+
+storage:
+  # local or remote
+  mode: local
+  local:
+    basePath: /app/assets
+    persistence:
+      enabled: true
+      existingClaim: ''
+      accessModes:
+        - ReadWriteOnce
+      size: 1Gi
+      storageClass: ''
+  remote:
+    bucketName: donetick
+    region: us-east-1
+    basePath: assets
+    accessKey: change-me
+    secretKey: change-me
+    endpoint: ''
+    publicHost: ''
+    maxUserStorage: 104857600
+    maxFileSize: 2097152
+
+config:
+  isUserCreationDisabled: false
+  server:
+    readTimeout: 10s
+    writeTimeout: 10s
+    ratePeriod: 60s
+    rateLimit: 300
+    serveFrontend: true
+    corsAllowOrigins:
+      - http://localhost:5173
+      - http://localhost:7926
+      - https://localhost
+      - http://localhost
+      - capacitor://localhost
+  logging:
+    level: info
+    encoding: json
+    development: false
+  schedulerJobs:
+    dueJob: 30m
+    overdueJob: 3h
+    preDueJob: 3h
+  email:
+    host: ''
+    port: ''
+    key: ''
+    email: ''
+    user: ''
+    appHost: ''
+  oauth2:
+    clientId: ''
+    clientSecret: ''
+    authUrl: ''
+    tokenUrl: ''
+    userInfoUrl: ''
+    redirectUrl: ''
+    name: ''
+  realtime:
+    enabled: true
+    sseEnabled: true
+    heartbeatInterval: 60s
+    connectionTimeout: 120s
+    maxConnections: 1000
+    maxConnectionsPerUser: 5
+    eventQueueSize: 2048
+    cleanupInterval: 2m
+    staleThreshold: 5m
+    enableCompression: true
+    enableStats: true
+    allowedOrigins:
+      - '*'
+  telegram:
+    token: ''
+  pushover:
+    token: ''
+
+minio:
+  enabled: false
+  image:
+    repository: quay.io/minio/minio
+    tag: RELEASE.2025-04-22T22-12-26Z
+    pullPolicy: IfNotPresent
+  rootUser: minioadmin
+  rootPassword: minioadmin
+  bucketName: donetick
+  service:
+    type: ClusterIP
+    apiPort: 9000
+    consolePort: 9001
+  persistence:
+    enabled: true
+    existingClaim: ''
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
+    storageClass: ''
+  ingress:
+    enabled: false
+    className: ''
+    annotations: {}
+    hosts:
+      - host: minio-admin.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+postgresql:
+  enabled: false
+  auth:
+    username: donetick
+    password: donetick
+    database: donetick
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi

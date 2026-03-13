@@ -1,0 +1,7 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: donetick.example.local
+      paths:
+        - path: /
+          pathType: Prefix

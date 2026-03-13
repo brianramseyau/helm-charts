@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "donetick.fullname" . }}
+  namespace: {{ include "donetick.namespace" . }}
+  labels:
+    {{- include "donetick.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "donetick.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "donetick.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "donetick.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
+            {{- if .Values.jwt.existingSecret }}
+            - name: DT_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jwt.existingSecret | quote }}
+                  key: {{ .Values.jwt.secretKey | quote }}
+            {{- end }}
+            {{- if not .Values.postgresql.enabled }}
+            - name: DT_SQLITE_PATH
+              value: {{ .Values.database.sqlite.path | quote }}
+            {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- if .Values.startupProbe.enabled }}
+          startupProbe:
+            {{- omit .Values.startupProbe "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /config/selfhosted.yaml
+              subPath: selfhosted.yaml
+              readOnly: true
+            {{- if and (not .Values.postgresql.enabled) .Values.database.sqlite.persistence.enabled }}
+            - name: sqlite-data
+              mountPath: /donetick-data
+            {{- end }}
+            {{- if and (eq .Values.storage.mode "local") .Values.storage.local.persistence.enabled }}
+            - name: assets
+              mountPath: /app/assets
+            {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "donetick.fullname" . }}-config
+        {{- if and (not .Values.postgresql.enabled) .Values.database.sqlite.persistence.enabled }}
+        - name: sqlite-data
+          persistentVolumeClaim:
+            claimName: {{ default (printf "%s-sqlite" (include "donetick.fullname" .)) .Values.database.sqlite.persistence.existingClaim }}
+        {{- end }}
+        {{- if and (eq .Values.storage.mode "local") .Values.storage.local.persistence.enabled }}
+        - name: assets
+          persistentVolumeClaim:
+            claimName: {{ default (printf "%s-assets" (include "donetick.fullname" .)) .Values.storage.local.persistence.existingClaim }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
