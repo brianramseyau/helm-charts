@@ -203,7 +203,7 @@ minio:
     className: ''
     annotations: {}
     hosts:
-      - host: minio-api.local
+      - host: minio.local
         paths:
           - path: /
             pathType: Prefix
