@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "donetick.minio.fullname" . }}
+  name: {{ include "donetick.minio.fullname" . }}-service
   namespace: {{ include "donetick.namespace" . }}
   labels:
     {{- include "donetick.labels" . | nindent 4 }}

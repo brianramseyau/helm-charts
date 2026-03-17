@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.9
+- Fix headless service name incorrect for dns
+
 ## 0.0.8
 - Add headless service for minio routing
 
