@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.12](https://img.shields.io/badge/Version-0.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.13](https://img.shields.io/badge/Version-0.0.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -160,7 +160,7 @@ A Helm chart for Donetick self-hosted deployments
 | minio.bucketName | string | `"donetick"` |  |
 | minio.domain | string | `"minio.local"` |  |
 | minio.service.type | string | `"ClusterIP"` |  |
-| minio.service.apiPort | int | `80` |  |
+| minio.service.apiPort | int | `9000` |  |
 | minio.service.consolePort | int | `9001` |  |
 | minio.persistence.enabled | bool | `true` |  |
 | minio.persistence.existingClaim | string | `""` |  |
