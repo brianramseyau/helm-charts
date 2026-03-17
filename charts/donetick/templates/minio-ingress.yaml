@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "donetick.minio.fullname" . }}
+  name: {{ include "donetick.minio.fullname" . }}-api
   namespace: {{ include "donetick.namespace" . }}
   labels:
     {{- include "donetick.labels" . | nindent 4 }}
@@ -27,6 +27,50 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.minio.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ include "donetick.minio.fullname" $ }}
+                port:
+                  number: {{ $.Values.minio.service.apiPort }}
+          {{- end }}
+    {{- end }}
+{{- end }}
+---
+{{- if and .Values.minio.enabled .Values.minio.consoleIngress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "donetick.minio.fullname" . }}-console
+  namespace: {{ include "donetick.namespace" . }}
+  labels:
+    {{- include "donetick.labels" . | nindent 4 }}
+    app.kubernetes.io/component: minio
+  {{- with .Values.minio.consoleIngress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.minio.consoleIngress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- if .Values.minio.consoleIngress.tls }}
+  tls:
+    {{- range .Values.minio.consoleIngress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.minio.consoleIngress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
