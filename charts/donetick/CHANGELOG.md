@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.0.11
-- Remove headless service
+## 0.0.12
+- Remove headless service for minio
+- Create bucket in minio on start
 
 ## 0.0.11
 - Fix shared selectorLabels

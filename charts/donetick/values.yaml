@@ -113,7 +113,7 @@ storage:
     basePath: assets
     accessKey: change-me
     secretKey: change-me
-    endpoint: http://donetick-minio.donetick.svc.cluster.local
+    endpoint: http://minio-api.local
     publicHost: ''
     maxUserStorage: 104857600
     maxFileSize: 2097152
