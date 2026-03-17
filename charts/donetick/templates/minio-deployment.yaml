@@ -39,6 +39,20 @@ spec:
               {{- else }}
               value: {{ print (include "donetick.minio.fullname" .) "." (include "donetick.namespace" .) ".svc.cluster.local" }}
               {{- end }}
+            - name: BUCKET_NAME
+              value: {{ .Values.minio.bucketName | quote }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - |
+                    sleep 5;
+                    /usr/bin/mc alias set myminio http://localhost:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+                    /usr/bin/mc mb myminio/${BUCKET_NAME};
+                    /usr/bin/mc admin policy attach myminio readwrite --user ${MINIO_ROOT_USER}
+                    exit 0;
           ports:
             - name: api
               containerPort: 9000
