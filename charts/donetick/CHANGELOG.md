@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.5
+- Fix quoted port number in commandline for minio
+
 ## 0.0.4
 - Set s3 region even if using local due to upstream bug
 
