@@ -11,12 +11,12 @@ spec:
   type: {{ .Values.minio.service.type }}
   ports:
     - name: api
-      port: api
-      targetPort: {{ .Values.minio.service.apiPort }}
+      port: {{ .Values.minio.service.apiPort }}
+      targetPort: api
       protocol: TCP
     - name: console
-      port: console
-      targetPort: {{ .Values.minio.service.consolePort }}
+      port: {{ .Values.minio.service.consolePort }}
+      targetPort: console
       protocol: TCP
   selector:
     {{- include "minio.selectorLabels" . | nindent 4 }}

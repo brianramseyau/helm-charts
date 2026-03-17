@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.13
+- Revert minio service back to default setup
+
 ## 0.0.12
 - Remove headless service for minio
 - Create bucket in minio on start

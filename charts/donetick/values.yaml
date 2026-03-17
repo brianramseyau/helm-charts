@@ -189,7 +189,7 @@ minio:
   domain: minio.local
   service:
     type: ClusterIP
-    apiPort: 80
+    apiPort: 9000
     consolePort: 9001
   persistence:
     enabled: true
