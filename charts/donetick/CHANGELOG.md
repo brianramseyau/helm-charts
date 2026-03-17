@@ -1,6 +1,9 @@
 # Changelog
 
 ## 0.0.11
+- Remove headless service
+
+## 0.0.11
 - Fix shared selectorLabels
 
 ## 0.0.10
