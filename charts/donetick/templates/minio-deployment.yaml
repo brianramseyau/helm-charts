@@ -34,11 +34,7 @@ spec:
             - name: MINIO_ROOT_PASSWORD
               value: {{ .Values.minio.rootPassword | quote }}
             - name: MINIO_DOMAIN
-              {{- if .Values.minio.domain }}
               value: {{ .Values.minio.domain | quote }}
-              {{- else }}
-              value: {{ print (include "donetick.minio.fullname" .) "." (include "donetick.namespace" .) ".svc.cluster.local" }}
-              {{- end }}
             - name: BUCKET_NAME
               value: {{ .Values.minio.bucketName | quote }}
           lifecycle:
