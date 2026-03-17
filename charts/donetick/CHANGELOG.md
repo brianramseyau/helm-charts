@@ -2,6 +2,7 @@
 
 ## 0.0.6
 - Fix path-based access only for minio
+- Fix YAML parse error when `database.sqlite.persistence.labels` or `storage.local.persistence.labels` is empty (`{}`).
 
 ## 0.0.5
 - Fix quoted port number in commandline for minio
