@@ -19,6 +19,8 @@ spec:
         {{- include "donetick.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: minio
     spec:
+      hostname: {{ .Values.storage.remote.bucketName }}
+      subdomain: {{ include "donetick.minio.fullname" . }}-headless
       containers:
         - name: minio
           image: "{{ .Values.minio.image.repository }}:{{ .Values.minio.image.tag }}"

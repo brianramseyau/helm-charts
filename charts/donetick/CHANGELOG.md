@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.8
+- Add headless service for minio routing
+
 ## 0.0.7
 - Fix regression quoted port number in commandline for minio
 
