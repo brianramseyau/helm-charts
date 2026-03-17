@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.11](https://img.shields.io/badge/Version-0.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.12](https://img.shields.io/badge/Version-0.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -100,7 +100,7 @@ A Helm chart for Donetick self-hosted deployments
 | storage.remote.basePath | string | `"assets"` |  |
 | storage.remote.accessKey | string | `"change-me"` |  |
 | storage.remote.secretKey | string | `"change-me"` |  |
-| storage.remote.endpoint | string | `"http://donetick-minio.donetick.svc.cluster.local"` |  |
+| storage.remote.endpoint | string | `"http://minio-api.local"` |  |
 | storage.remote.publicHost | string | `""` |  |
 | storage.remote.maxUserStorage | int | `104857600` |  |
 | storage.remote.maxFileSize | int | `2097152` |  |
@@ -158,7 +158,7 @@ A Helm chart for Donetick self-hosted deployments
 | minio.rootUser | string | `"minioadmin"` |  |
 | minio.rootPassword | string | `"minioadmin"` |  |
 | minio.bucketName | string | `"donetick"` |  |
-| minio.domain | string | `""` |  |
+| minio.domain | string | `"minio.local"` |  |
 | minio.service.type | string | `"ClusterIP"` |  |
 | minio.service.apiPort | int | `80` |  |
 | minio.service.consolePort | int | `9001` |  |
@@ -170,10 +170,17 @@ A Helm chart for Donetick self-hosted deployments
 | minio.ingress.enabled | bool | `false` |  |
 | minio.ingress.className | string | `""` |  |
 | minio.ingress.annotations | object | `{}` |  |
-| minio.ingress.hosts[0].host | string | `"minio-admin.local"` |  |
+| minio.ingress.hosts[0].host | string | `"minio.local"` |  |
 | minio.ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | minio.ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
 | minio.ingress.tls | list | `[]` |  |
+| minio.consoleIngress.enabled | bool | `false` |  |
+| minio.consoleIngress.className | string | `""` |  |
+| minio.consoleIngress.annotations | object | `{}` |  |
+| minio.consoleIngress.hosts[0].host | string | `"minio-admin.local"` |  |
+| minio.consoleIngress.hosts[0].paths[0].path | string | `"/"` |  |
+| minio.consoleIngress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| minio.consoleIngress.tls | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |
