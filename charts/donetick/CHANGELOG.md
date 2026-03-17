@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.14
+- Fix minio service name
+
 ## 0.0.13
 - Revert minio service back to default setup
 
