@@ -19,6 +19,5 @@ spec:
       targetPort: {{ .Values.minio.service.consolePort }}
       protocol: TCP
   selector:
-    {{- include "donetick.selectorLabels" . | nindent 4 }}
-    app.kubernetes.io/component: minio
+    {{- include "minio.selectorLabels" . | nindent 4 }}
 {{- end }}

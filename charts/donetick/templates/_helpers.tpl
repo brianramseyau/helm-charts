@@ -48,6 +48,16 @@ Selector labels
 {{- define "donetick.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "donetick.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: donetick
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "minio.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "donetick.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: minio
 {{- end }}
 
 {{/*

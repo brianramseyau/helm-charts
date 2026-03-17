@@ -11,13 +11,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "donetick.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: minio
+      {{- include "minio.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "donetick.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: minio
+        {{- include "minio.selectorLabels" . | nindent 8 }}
     spec:
       hostname: {{ .Values.storage.remote.bucketName }}
       subdomain: {{ include "donetick.minio.fullname" . }}

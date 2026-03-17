@@ -6,12 +6,11 @@ metadata:
   namespace: {{ include "donetick.namespace" . }}
 spec:
   clusterIP: None
-  selector:
-    {{- include "donetick.selectorLabels" . | nindent 4 }}
-    app.kubernetes.io/component: minio
   ports:
     - name: api
-      port: api
-      targetPort: {{ .Values.minio.service.apiPort }}
+      port: {{ .Values.minio.service.apiPort }}
+      targetPort: api
       protocol: TCP
+  selector:
+    {{- include "minio.selectorLabels" . | nindent 4 }}
 {{- end }}
