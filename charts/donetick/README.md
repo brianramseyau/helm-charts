@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.7](https://img.shields.io/badge/Version-0.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.8](https://img.shields.io/badge/Version-0.0.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -100,7 +100,7 @@ A Helm chart for Donetick self-hosted deployments
 | storage.remote.basePath | string | `"assets"` |  |
 | storage.remote.accessKey | string | `"change-me"` |  |
 | storage.remote.secretKey | string | `"change-me"` |  |
-| storage.remote.endpoint | string | `"donetick-minio.donetick.svc.cluster.local"` |  |
+| storage.remote.endpoint | string | `"http://donetick-minio.donetick.svc.cluster.local"` |  |
 | storage.remote.publicHost | string | `""` |  |
 | storage.remote.maxUserStorage | int | `104857600` |  |
 | storage.remote.maxFileSize | int | `2097152` |  |
