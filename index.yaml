@@ -84,6 +84,32 @@ entries:
     version: 0.1.74
   - apiVersion: v2
     appVersion: v0.1.74
+    created: "2026-03-17T04:42:50.355006789Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 16.7.27
+    description: A Helm chart for Donetick self-hosted deployments
+    digest: 843f45d863e2d5769576184827353c1a1d1f935da4da736aa5d28b350d52fede
+    home: https://github.com/donetick/donetick
+    keywords:
+    - donetick
+    - chores
+    - tasks
+    - selfhosted
+    maintainers:
+    - name: brianramseyau
+    name: donetick
+    sources:
+    - https://github.com/donetick/donetick
+    - https://hub.docker.com/r/donetick/donetick
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/donetick-0.0.10/donetick-0.0.10.tgz
+    version: 0.0.10
+  - apiVersion: v2
+    appVersion: v0.1.74
     created: "2026-03-17T04:02:25.983562986Z"
     dependencies:
     - condition: postgresql.enabled
@@ -573,4 +599,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-17T04:02:25.983652123Z"
+generated: "2026-03-17T04:42:50.355109662Z"
