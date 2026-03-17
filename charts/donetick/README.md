@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.5](https://img.shields.io/badge/Version-0.0.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
+![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.74](https://img.shields.io/badge/AppVersion-v0.1.74-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -100,7 +100,7 @@ A Helm chart for Donetick self-hosted deployments
 | storage.remote.basePath | string | `"assets"` |  |
 | storage.remote.accessKey | string | `"change-me"` |  |
 | storage.remote.secretKey | string | `"change-me"` |  |
-| storage.remote.endpoint | string | `""` |  |
+| storage.remote.endpoint | string | `"donetick-minio.donetick.svc.cluster.local"` |  |
 | storage.remote.publicHost | string | `""` |  |
 | storage.remote.maxUserStorage | int | `104857600` |  |
 | storage.remote.maxFileSize | int | `2097152` |  |
@@ -158,8 +158,9 @@ A Helm chart for Donetick self-hosted deployments
 | minio.rootUser | string | `"minioadmin"` |  |
 | minio.rootPassword | string | `"minioadmin"` |  |
 | minio.bucketName | string | `"donetick"` |  |
+| minio.domain | string | `""` |  |
 | minio.service.type | string | `"ClusterIP"` |  |
-| minio.service.apiPort | int | `9000` |  |
+| minio.service.apiPort | int | `80` |  |
 | minio.service.consolePort | int | `9001` |  |
 | minio.persistence.enabled | bool | `true` |  |
 | minio.persistence.existingClaim | string | `""` |  |
