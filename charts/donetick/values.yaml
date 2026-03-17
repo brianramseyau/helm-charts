@@ -186,7 +186,7 @@ minio:
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
-  domain: ''
+  domain: minio.local
   service:
     type: ClusterIP
     apiPort: 80
