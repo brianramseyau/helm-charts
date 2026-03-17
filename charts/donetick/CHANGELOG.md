@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.4
+- Set s3 region even if using local due to upstream bug
+
 ## 0.0.3
 
 - Added configurable labels for the SQLite persistence PVC via `database.sqlite.persistence.labels`.

@@ -91,7 +91,7 @@ data:
       storage_type: {{ .Values.storage.mode | quote }}
       {{- if eq .Values.storage.mode "local" }}
       bucket_name: ""
-      region: ""
+      region: {{ .Values.storage.remote.region | quote }}
       base_path: {{ .Values.storage.local.basePath | quote }}
       access_key: ""
       secret_key: ""
