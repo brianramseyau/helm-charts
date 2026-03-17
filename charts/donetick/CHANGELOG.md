@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.10
+- Update port handling
+
 ## 0.0.9
 - Fix headless service name incorrect for dns
 

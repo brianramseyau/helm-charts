@@ -43,10 +43,10 @@ spec:
               {{- end }}
           ports:
             - name: api
-              containerPort: {{ .Values.minio.service.apiPort }}
+              containerPort: 9000
               protocol: TCP
             - name: console
-              containerPort: {{ .Values.minio.service.consolePort }}
+              containerPort: 9001
               protocol: TCP
           volumeMounts:
             - name: data
