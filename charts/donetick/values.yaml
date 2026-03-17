@@ -113,7 +113,7 @@ storage:
     basePath: assets
     accessKey: change-me
     secretKey: change-me
-    endpoint: ''
+    endpoint: donetick-minio.donetick.svc.cluster.local
     publicHost: ''
     maxUserStorage: 104857600
     maxFileSize: 2097152
@@ -186,9 +186,10 @@ minio:
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
+  domain: ''
   service:
     type: ClusterIP
-    apiPort: 9000
+    apiPort: 80
     consolePort: 9001
   persistence:
     enabled: true

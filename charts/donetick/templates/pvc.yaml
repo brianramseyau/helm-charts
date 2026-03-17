@@ -6,7 +6,9 @@ metadata:
   namespace: {{ include "donetick.namespace" . }}
   labels:
     {{- include "donetick.labels" . | nindent 4 }}
-    {{- toYaml .Values.database.sqlite.persistence.labels | nindent 4 }}
+    {{- with .Values.database.sqlite.persistence.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     {{- toYaml .Values.database.sqlite.persistence.accessModes | nindent 4 }}
@@ -26,7 +28,9 @@ metadata:
   namespace: {{ include "donetick.namespace" . }}
   labels:
     {{- include "donetick.labels" . | nindent 4 }}
-    {{- toYaml .Values.storage.local.persistence.labels | nindent 4 }}
+    {{- with .Values.storage.local.persistence.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     {{- toYaml .Values.storage.local.persistence.accessModes | nindent 4 }}
