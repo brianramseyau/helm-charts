@@ -27,7 +27,7 @@ spec:
             - server
             - /data
             - --console-address
-            - :{{ .Values.minio.service.consolePort | quote }}
+            - :{{ .Values.minio.service.consolePort }}
           env:
             - name: MINIO_ROOT_USER
               value: {{ .Values.minio.rootUser | quote }}
@@ -35,7 +35,7 @@ spec:
               value: {{ .Values.minio.rootPassword | quote }}
             - name: MINIO_DOMAIN
               {{- if .Values.minio.domain }}
-              value: {{ .Values.minio.domain | quote }}  
+              value: {{ .Values.minio.domain | quote }}
               {{- else }}
               value: {{ print (include "donetick.minio.fullname" .) "." (include "donetick.namespace" .) ".svc.cluster.local" }}
               {{- end }}

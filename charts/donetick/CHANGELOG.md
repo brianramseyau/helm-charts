@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.7
+- Fix regression quoted port number in commandline for minio
+
 ## 0.0.6
 - Fix path-based access only for minio
 - Fix YAML parse error when `database.sqlite.persistence.labels` or `storage.local.persistence.labels` is empty (`{}`).
