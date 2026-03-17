@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.6
+- Fix path-based access only for minio
+
 ## 0.0.5
 - Fix quoted port number in commandline for minio
 
