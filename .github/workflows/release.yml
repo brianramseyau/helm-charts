@@ -27,7 +27,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           branch: main
-          message: 'Regenerate chart README.md'
+          message: 'chore: regenerate chart README.md'
 
   release:
     runs-on: ubuntu-latest
