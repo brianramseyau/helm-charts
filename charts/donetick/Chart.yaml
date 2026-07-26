@@ -2,8 +2,8 @@ apiVersion: v2
 name: donetick
 description: A Helm chart for Donetick self-hosted deployments
 type: application
-version: 0.0.14
-appVersion: 'v0.1.74'
+version: 0.0.15
+appVersion: 'v0.1.75'
 home: https://github.com/donetick/donetick
 maintainers:
   - name: brianramseyau
