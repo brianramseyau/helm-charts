@@ -1,17 +1,20 @@
-{{- if not .Values.statefulset.enabled }}
+{{- if .Values.statefulset.enabled }}
+{{- if .Values.postgresql.enabled }}
+{{- fail "statefulset.enabled is only supported in sqlite mode; set postgresql.enabled: false" }}
+{{- end }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "donetick.fullname" . }}
   namespace: {{ include "donetick.namespace" . }}
   labels:
     {{- include "donetick.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  # sqlite is single-writer, so a StatefulSet here always runs exactly one replica.
+  replicas: 1
+  serviceName: {{ include "donetick.fullname" . }}-headless
   {{- with .Values.updateStrategy }}
-  strategy:
+  updateStrategy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   selector:
@@ -71,10 +74,8 @@ spec:
                   name: {{ .Values.config.oauth2.existingSecret | quote }}
                   key: {{ .Values.config.oauth2.clientSecretKey | quote }}
             {{- end }}
-            {{- if not .Values.postgresql.enabled }}
             - name: DT_SQLITE_PATH
               value: {{ .Values.database.sqlite.path | quote }}
-            {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
@@ -96,7 +97,7 @@ spec:
               mountPath: /config/selfhosted.yaml
               subPath: selfhosted.yaml
               readOnly: true
-            {{- if and (not .Values.postgresql.enabled) .Values.database.sqlite.persistence.enabled }}
+            {{- if .Values.database.sqlite.persistence.enabled }}
             - name: sqlite-data
               mountPath: /donetick-data
             {{- end }}
@@ -108,7 +109,7 @@ spec:
         - name: config
           configMap:
             name: {{ include "donetick.fullname" . }}-config
-        {{- if and (not .Values.postgresql.enabled) .Values.database.sqlite.persistence.enabled }}
+        {{- if .Values.database.sqlite.persistence.enabled }}
         - name: sqlite-data
           persistentVolumeClaim:
             claimName: {{ default (printf "%s-sqlite" (include "donetick.fullname" .)) .Values.database.sqlite.persistence.existingClaim }}
