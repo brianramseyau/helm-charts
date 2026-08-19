@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.17
+- Add `updateStrategy` value to override the Deployment rollout strategy (e.g. set `type: Recreate`) to fix pods stuck pending when a ReadWriteOnce volume can't be mounted by both the old and new pod
+- Add `statefulset.enabled` to deploy sqlite-mode installs as a StatefulSet instead of a Deployment, which avoids the ReadWriteOnce conflict entirely since old pods are always terminated before their replacement is created
+- Bump appVersion to v0.1.79
+
 ## 0.0.14
 - Fix minio service name
 

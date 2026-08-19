@@ -67,6 +67,21 @@ autoscaling:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
 
+# Only applies when statefulset.enabled is false. Rolling updates default to
+# creating the new pod before terminating the old one, which fails when a
+# ReadWriteOnce volume (e.g. database.sqlite.persistence) can't be mounted by
+# both pods at once. Set { type: Recreate } to terminate the old pod first,
+# or see statefulset.enabled below for a StatefulSet-based alternative.
+updateStrategy: {}
+
+# Deploy as a StatefulSet instead of a Deployment. Only supported when
+# postgresql.enabled is false (sqlite mode). A StatefulSet always terminates
+# the existing pod before creating its replacement, which avoids the
+# ReadWriteOnce volume mount conflict described above without needing
+# updateStrategy.type: Recreate.
+statefulset:
+  enabled: false
+
 env:
   - name: DT_ENV
     value: selfhosted
