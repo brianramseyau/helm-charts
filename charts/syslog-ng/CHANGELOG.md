@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.8
+- fix: correct @version config pragma to 4.2 to match syslog-ng 4.11.0's config schema version
+
 ## 0.0.7
 - chore: update syslog-ng version to 4.11.0
 

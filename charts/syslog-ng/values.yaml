@@ -7,7 +7,7 @@ image:
   tag: ''
 
 config: |
-  @version: 4.11
+  @version: 4.2
   @include "scl.conf"
   options {
     # enable or disable directory creation for destination files
