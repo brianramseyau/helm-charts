@@ -62,8 +62,12 @@ spec:
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.env }}
           env:
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.envFrom }}

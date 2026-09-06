@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.6
+- fix: inject pod IP into HOMEPAGE_ALLOWED_HOSTS so liveness/readiness probes pass host validation on v2.x
+
 ## 0.0.5
 - chore: update homepage version to v2.2.0
 
