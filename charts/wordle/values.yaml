@@ -1,10 +1,10 @@
 replicaCount: 1
 
 image:
-  repository: modem7/wordle
+  repository: ghcr.io/brianramseyau/wordle
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""  # options are: legacy or latest
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
