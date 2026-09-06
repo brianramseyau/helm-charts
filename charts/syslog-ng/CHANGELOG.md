@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.7
+- chore: update syslog-ng version to 4.11.0
+
 ## 0.0.6
 - feat: adds helm docs
 
