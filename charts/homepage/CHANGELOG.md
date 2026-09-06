@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.5
+- chore: update homepage version to v2.2.0
+
 ## 0.0.4
 - chore: update homepage version to v1.11.0
 
