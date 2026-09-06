@@ -3,7 +3,7 @@ name: wordle
 description: A Helm chart for modem7/wordle
 type: application
 version: 0.1.4
-appVersion: 'legacy'
+appVersion: 'latest'
 maintainers:
   - name: brianramseyau
 sources:
