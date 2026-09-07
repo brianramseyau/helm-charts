@@ -1,0 +1,13 @@
+env:
+  - name: ORIGIN_URL
+    value: http://192.168.1.2:3000
+  - name: ORIGIN_USERNAME
+    value: username
+  - name: ORIGIN_PASSWORD
+    value: password
+  - name: REPLICA1_URL
+    value: http://192.168.1.3
+  - name: REPLICA1_USERNAME
+    value: username
+  - name: REPLICA1_PASSWORD
+    value: password
