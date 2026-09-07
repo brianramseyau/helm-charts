@@ -93,13 +93,14 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
+# A tcpSocket check is used instead of httpGet because every request to
+# "/" or "/healthz" makes a live call to the origin/replica instances -
+# an unreachable/slow AdGuardHome instance would otherwise fail the probes.
 livenessProbe:
-  httpGet:
-    path: /
+  tcpSocket:
     port: http
 readinessProbe:
-  httpGet:
-    path: /
+  tcpSocket:
     port: http
 
 # Additional volumes on the output Deployment definition.
@@ -155,6 +156,11 @@ env:
   # unreachable), which crash-loops the pod. Keep syncing on error instead.
   - name: CONTINUE_ON_ERROR
     value: 'true'
+  # Without a client timeout, a sync against an unreachable/unresponsive
+  # origin or replica blocks indefinitely, which also blocks the /healthz
+  # and / endpoints and trips the liveness/readiness probes below.
+  - name: HTTP_CLIENT_TIMEOUT
+    value: '10s'
   # Optional, defaults to 8080. Set to 0 to disable the API entirely.
   # - name: API_PORT
   #   value: '8080'

@@ -49,10 +49,8 @@ A Helm chart for bakito/adguardhome-sync
 | ingressRoute.entryPoints | list | `[]` |  |
 | ingressRoute.routes[0].match | string | `"PathPrefix (`/`)"` |  |
 | resources | object | `{}` |  |
-| livenessProbe.httpGet.path | string | `"/"` |  |
-| livenessProbe.httpGet.port | string | `"http"` |  |
-| readinessProbe.httpGet.path | string | `"/"` |  |
-| readinessProbe.httpGet.port | string | `"http"` |  |
+| livenessProbe.tcpSocket.port | string | `"http"` |  |
+| readinessProbe.tcpSocket.port | string | `"http"` |  |
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
@@ -80,6 +78,8 @@ A Helm chart for bakito/adguardhome-sync
 | env[7].value | string | `"true"` |  |
 | env[8].name | string | `"CONTINUE_ON_ERROR"` |  |
 | env[8].value | string | `"true"` |  |
+| env[9].name | string | `"HTTP_CLIENT_TIMEOUT"` |  |
+| env[9].value | string | `"10s"` |  |
 | envFrom[0].secretRef.name | string | `"adguardhome-sync-secrets"` |  |
 | envFrom[0].secretRef.optional | bool | `true` |  |
 
