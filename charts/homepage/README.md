@@ -1,6 +1,6 @@
 # homepage
 
-![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.11.0](https://img.shields.io/badge/AppVersion-v1.11.0-informational?style=flat-square)
+![Version: 0.0.7](https://img.shields.io/badge/Version-0.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.2.0](https://img.shields.io/badge/AppVersion-v2.2.0-informational?style=flat-square)
 
 A Helm chart for gethomepage/homepage based on the official docs for Kubernetes Installation docs
 
@@ -67,7 +67,7 @@ A Helm chart for gethomepage/homepage based on the official docs for Kubernetes 
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
 | env[0].name | string | `"HOMEPAGE_ALLOWED_HOSTS"` |  |
-| env[0].value | string | `"gethomepage.dev"` |  |
+| env[0].value | string | `"$(MY_POD_IP):3000,{{ include \"homepage.fullname\" . }}:3000,gethomepage.dev"` |  |
 | envFrom | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |

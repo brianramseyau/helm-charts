@@ -1,6 +1,6 @@
 # syslog-ng
 
-![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![AppVersion: 3.38.1](https://img.shields.io/badge/AppVersion-3.38.1-informational?style=flat-square)
+![Version: 0.0.8](https://img.shields.io/badge/Version-0.0.8-informational?style=flat-square) ![AppVersion: 4.11.0](https://img.shields.io/badge/AppVersion-4.11.0-informational?style=flat-square)
 
 Syslog-ng Helm Chart
 
@@ -22,7 +22,7 @@ Syslog-ng Helm Chart
 | image.repository | string | `"linuxserver/syslog-ng"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart's appVersion |
-| config | string | `"@version: 3.38\n@include \"scl.conf\"\noptions {\n  # enable or disable directory creation for destination files\n  create_dirs(yes);\n\n  # keep hostnames from source host\n  keep_hostname(yes);\n\n  # use ISO8601 timestamps\n  ts_format(iso);\n};\nlog {\n\tsource {\n\t\tnetwork();\n\t};\n\tdestination { file(\"/var/log/${YEAR}-${MONTH}-syslog\"); };\n};\n"` |  |
+| config | string | `"@version: 4.2\n@include \"scl.conf\"\noptions {\n  # enable or disable directory creation for destination files\n  create_dirs(yes);\n\n  # keep hostnames from source host\n  keep_hostname(yes);\n\n  # use ISO8601 timestamps\n  ts_format(iso);\n};\nlog {\n\tsource {\n\t\tnetwork();\n\t};\n\tdestination { file(\"/var/log/${YEAR}-${MONTH}-syslog\"); };\n};\n"` |  |
 | persistence.enable | bool | `true` |  |
 | persistence.size | string | `"50Gi"` |  |
 | persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
