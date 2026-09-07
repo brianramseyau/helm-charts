@@ -73,6 +73,26 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/adguard-exporter-0.0.1/adguard-exporter-0.0.1.tgz
     version: 0.0.1
+  adguardhome-sync:
+  - apiVersion: v2
+    appVersion: v0.9.2
+    created: "2026-09-07T00:56:55.092124165Z"
+    description: A Helm chart for bakito/adguardhome-sync
+    digest: c7858b5265aa0264681850bed0147f8501e09462ce70d9f24e5a7cf6bd7d899f
+    keywords:
+    - adguard home
+    - dns
+    - sync
+    maintainers:
+    - name: brianramseyau
+    name: adguardhome-sync
+    sources:
+    - https://github.com/brianramseyau/helm-charts
+    - https://github.com/bakito/adguardhome-sync
+    type: application
+    urls:
+    - https://github.com/brianramseyau/helm-charts/releases/download/adguardhome-sync-0.0.1/adguardhome-sync-0.0.1.tgz
+    version: 0.0.1
   donetick:
   - apiVersion: v2
     appVersion: v0.1.74
@@ -875,4 +895,4 @@ entries:
     urls:
     - https://github.com/brianramseyau/helm-charts/releases/download/wordle-0.0.1/wordle-0.0.1.tgz
     version: 0.0.1
-generated: "2026-09-07T00:07:07.007917808Z"
+generated: "2026-09-07T00:56:55.322286868Z"
