@@ -11,3 +11,9 @@ env:
     value: username
   - name: REPLICA1_PASSWORD
     value: password
+  # Origin/replicas above aren't reachable in CI; skip the startup sync so the
+  # pod doesn't exit(2) and crash-loop before the readiness probe can pass.
+  - name: RUN_ON_START
+    value: 'false'
+  - name: CONTINUE_ON_ERROR
+    value: 'true'

@@ -149,7 +149,11 @@ env:
   # Standard cron expression; defaults to running once and exiting if unset.
   - name: CRON
     value: '0 */2 * * *'
-  - name: RUNONSTART
+  - name: RUN_ON_START
+    value: 'true'
+  # By default the process exits if a sync fails (e.g. a replica is briefly
+  # unreachable), which crash-loops the pod. Keep syncing on error instead.
+  - name: CONTINUE_ON_ERROR
     value: 'true'
   # Optional, defaults to 8080. Set to 0 to disable the API entirely.
   # - name: API_PORT

@@ -76,8 +76,10 @@ A Helm chart for bakito/adguardhome-sync
 | env[5].valueFrom.secretKeyRef.optional | bool | `true` |  |
 | env[6].name | string | `"CRON"` |  |
 | env[6].value | string | `"0 */2 * * *"` |  |
-| env[7].name | string | `"RUNONSTART"` |  |
+| env[7].name | string | `"RUN_ON_START"` |  |
 | env[7].value | string | `"true"` |  |
+| env[8].name | string | `"CONTINUE_ON_ERROR"` |  |
+| env[8].value | string | `"true"` |  |
 | envFrom[0].secretRef.name | string | `"adguardhome-sync-secrets"` |  |
 | envFrom[0].secretRef.optional | bool | `true` |  |
 
