@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.7
+- fix: template env values and add Service name to HOMEPAGE_ALLOWED_HOSTS so in-cluster access (incl. the helm test) passes host validation
+
 ## 0.0.6
 - fix: inject pod IP into HOMEPAGE_ALLOWED_HOSTS so liveness/readiness probes pass host validation on v2.x
 

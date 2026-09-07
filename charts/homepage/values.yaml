@@ -100,10 +100,11 @@ volumes: []
 volumeMounts: []
 
 # this is used to set the allowed hosts for the homepage a value of `*` will disable the check (not recommended)
-# $(MY_POD_IP) is required so the pod's own liveness/readiness probes (which hit the pod IP directly) pass host validation
+# $(MY_POD_IP) is required so the pod's own liveness/readiness probes (which hit the pod IP directly) pass host validation,
+# and the Service name is required so in-cluster access (including the chart's helm test) passes host validation too
 env:
   - name: HOMEPAGE_ALLOWED_HOSTS
-    value: $(MY_POD_IP):3000,gethomepage.dev
+    value: '$(MY_POD_IP):3000,{{ include "homepage.fullname" . }}:3000,gethomepage.dev'
 
 envFrom: []
 # envFrom:

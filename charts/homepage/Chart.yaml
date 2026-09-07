@@ -13,5 +13,5 @@ keywords:
   - gethomepage
   - homepage helm chart
   - homepage helm chart for kubernetes
-version: 0.0.6
+version: 0.0.7
 appVersion: 'v2.2.0'
