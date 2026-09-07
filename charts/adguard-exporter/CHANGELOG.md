@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.4
+- chore: update adguard-exporter version to v1.2.1
+
 ## 0.0.3
 - feat: update to latest version and use new health endpoints
 
