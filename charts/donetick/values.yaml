@@ -130,10 +130,13 @@ storage:
     secretKey: change-me
     endpoint: http://minio-api.local
     # Use path-style S3 addressing (endpoint/bucket/key) instead of
-    # virtual-hosted style (bucket.endpoint/key). Required for MinIO and
-    # most other self-hosted S3-compatible backends since they don't expose
-    # a DNS wildcard/matching TLS cert at *.<endpoint-host>.
-    pathStyle: true
+    # virtual-hosted style (bucket.endpoint/key). Only applies when
+    # bringing your own external endpoint; the bundled MinIO (below) always
+    # uses path-style regardless of this value, since it doesn't expose a
+    # DNS wildcard/matching TLS cert at *.<endpoint-host>. Defaults to false
+    # to match the AWS S3 default and avoid changing behavior for existing
+    # external S3 installs on upgrade.
+    pathStyle: false
     publicHost: ''
     maxUserStorage: 104857600
     maxFileSize: 2097152
@@ -206,9 +209,12 @@ minio:
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
-  # Only needed for virtual-hosted-style (bucket.domain) access, which
-  # requires a DNS wildcard and matching TLS cert at *.<domain>. Leave empty
-  # when using path-style addressing (storage.remote.pathStyle: true).
+  # Sets MINIO_DOMAIN on the bundled MinIO server, enabling virtual-hosted-
+  # style (bucket.domain) requests from clients outside the cluster (e.g.
+  # via an ingress host with its own matching DNS wildcard and TLS cert).
+  # Donetick's own connection to this MinIO always uses path-style and is
+  # unaffected by this setting. Leave empty unless you need that external
+  # virtual-hosted-style access.
   domain: ''
   service:
     type: ClusterIP
