@@ -17,8 +17,6 @@ spec:
       labels:
         {{- include "minio.selectorLabels" . | nindent 8 }}
     spec:
-      hostname: {{ .Values.storage.remote.bucketName }}
-      subdomain: {{ include "donetick.minio.fullname" . }}
       containers:
         - name: minio
           image: "{{ .Values.minio.image.repository }}:{{ .Values.minio.image.tag }}"
@@ -33,8 +31,10 @@ spec:
               value: {{ .Values.minio.rootUser | quote }}
             - name: MINIO_ROOT_PASSWORD
               value: {{ .Values.minio.rootPassword | quote }}
+            {{- if .Values.minio.domain }}
             - name: MINIO_DOMAIN
               value: {{ .Values.minio.domain | quote }}
+            {{- end }}
             - name: BUCKET_NAME
               value: {{ .Values.minio.bucketName | quote }}
           lifecycle:

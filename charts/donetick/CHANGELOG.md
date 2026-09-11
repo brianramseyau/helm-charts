@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.18
+- Add `storage.remote.pathStyle` (default `true`), rendered as `path_style` in the generated config, so donetick's S3 client uses path-style addressing (`endpoint/bucket/key`) instead of virtual-hosted style (`bucket.endpoint/key`). Requires appVersion >= v0.1.79's donetick, which added `path_style` support.
+- Remove the pod `hostname`/`subdomain` DNS workaround from the bundled MinIO deployment — it existed only to make virtual-hosted-style bucket addressing resolve in-cluster and is no longer needed now that path-style is the default.
+- Make `minio.domain` (`MINIO_DOMAIN`) optional and unset by default; it's now only needed if you explicitly want virtual-hosted-style access to the bundled MinIO.
+
 ## 0.0.17
 - Add `updateStrategy` value to override the Deployment rollout strategy (e.g. set `type: Recreate`) to fix pods stuck pending when a ReadWriteOnce volume can't be mounted by both the old and new pod
 - Add `statefulset.enabled` to deploy sqlite-mode installs as a StatefulSet instead of a Deployment, which avoids the ReadWriteOnce conflict entirely since old pods are always terminated before their replacement is created

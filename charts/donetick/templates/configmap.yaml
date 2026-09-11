@@ -96,6 +96,7 @@ data:
       access_key: ""
       secret_key: ""
       endpoint: ""
+      path_style: false
       public_host: ""
       {{- else }}
       bucket_name: {{ .Values.storage.remote.bucketName | quote }}
@@ -110,6 +111,7 @@ data:
       secret_key: {{ .Values.storage.remote.secretKey | quote }}
       endpoint: {{ .Values.storage.remote.endpoint | quote }}
       {{- end }}
+      path_style: {{ .Values.storage.remote.pathStyle }}
       public_host: {{ .Values.storage.remote.publicHost | quote }}
       max_user_storage: {{ .Values.storage.remote.maxUserStorage }}
       max_file_size: {{ .Values.storage.remote.maxFileSize }}

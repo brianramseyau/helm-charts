@@ -129,6 +129,11 @@ storage:
     accessKey: change-me
     secretKey: change-me
     endpoint: http://minio-api.local
+    # Use path-style S3 addressing (endpoint/bucket/key) instead of
+    # virtual-hosted style (bucket.endpoint/key). Required for MinIO and
+    # most other self-hosted S3-compatible backends since they don't expose
+    # a DNS wildcard/matching TLS cert at *.<endpoint-host>.
+    pathStyle: true
     publicHost: ''
     maxUserStorage: 104857600
     maxFileSize: 2097152
@@ -201,7 +206,10 @@ minio:
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
-  domain: minio.local
+  # Only needed for virtual-hosted-style (bucket.domain) access, which
+  # requires a DNS wildcard and matching TLS cert at *.<domain>. Leave empty
+  # when using path-style addressing (storage.remote.pathStyle: true).
+  domain: ''
   service:
     type: ClusterIP
     apiPort: 9000
