@@ -96,6 +96,7 @@ data:
       access_key: ""
       secret_key: ""
       endpoint: ""
+      path_style: false
       public_host: ""
       {{- else }}
       bucket_name: {{ .Values.storage.remote.bucketName | quote }}
@@ -105,10 +106,12 @@ data:
       access_key: {{ .Values.minio.rootUser | quote }}
       secret_key: {{ .Values.minio.rootPassword | quote }}
       endpoint: {{ printf "http://%s:%v" (include "donetick.minio.fullname" .) .Values.minio.service.apiPort | quote }}
+      path_style: true
       {{- else }}
       access_key: {{ .Values.storage.remote.accessKey | quote }}
       secret_key: {{ .Values.storage.remote.secretKey | quote }}
       endpoint: {{ .Values.storage.remote.endpoint | quote }}
+      path_style: {{ .Values.storage.remote.pathStyle }}
       {{- end }}
       public_host: {{ .Values.storage.remote.publicHost | quote }}
       max_user_storage: {{ .Values.storage.remote.maxUserStorage }}
