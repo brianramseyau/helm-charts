@@ -193,3 +193,4 @@ A Helm chart for Donetick self-hosted deployments
 | postgresql.auth.database | string | `"donetick"` |  |
 | postgresql.primary.persistence.enabled | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"8Gi"` |  |
+
