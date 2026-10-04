@@ -57,7 +57,7 @@ data:
       key: {{ .Values.config.email.key | quote }}
       email: {{ .Values.config.email.email | quote }}
       user: {{ .Values.config.email.user | quote }}
-      appHost: {{ .Values.config.email.appHost | quote }}
+      app_host: {{ .Values.config.email.appHost | quote }}
     oauth2:
       {{- if .Values.config.oauth2.existingSecret }}
       client_id: $DT_OAUTH2_CLIENT_ID
