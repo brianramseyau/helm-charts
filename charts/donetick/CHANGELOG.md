@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.19
+- Bump appVersion to v0.1.80
+- Render the email app host as `app_host` instead of `appHost`, matching the v0.1.80 config rename (the `config.email.appHost` value name is unchanged and the upstream legacy fallback keeps old configs working)
+
 ## 0.0.18
 - The bundled MinIO deployment now always uses path-style S3 addressing (`endpoint/bucket/key`) internally, since donetick v0.1.79 added `path_style` support upstream. This removes the need for the wildcard DNS/TLS that virtual-hosted-style (`bucket.endpoint/key`) addressing required.
 - Add `storage.remote.pathStyle` (default `false`, matching the AWS S3 default) for users bringing their own external S3-compatible endpoint that needs path-style addressing too; rendered as `path_style` in the generated config. Not a behavior change for existing external-S3 installs.
