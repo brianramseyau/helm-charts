@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.20
+- Bump appVersion to v0.1.83
+- No chart template changes required for v0.1.81-v0.1.83. Notable upstream changes since v0.1.80:
+  - v0.1.82 adds the reward store, project sharing with selected members, calendar (iCal) sync, and the opt-in Donetick Bridge hosted notification relay (`bridge` config, disabled by default)
+  - API keys now use a `dt_` prefix and are stored hashed; existing API keys must be regenerated after upgrading
+  - Upstream now auto-generates `selfhosted.yaml` on first startup when none exists; this does not affect the chart, which always mounts its own generated config
+  - SQLite/Postgres schema migrations run automatically at startup
+
 ## 0.0.19
 - Bump appVersion to v0.1.80
 - Render the email app host as `app_host` instead of `appHost`, matching the v0.1.80 config rename (the `config.email.appHost` value name is unchanged and the upstream legacy fallback keeps old configs working)
