@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.21
+- Bump appVersion to v0.1.85
+- No chart template changes required for v0.1.84-v0.1.85: the upstream `config/selfhosted.yaml.example` schema is unchanged, so the chart's generated config remains valid and no new values are needed to enable the new features
+- Notable upstream changes since v0.1.83:
+  - v0.1.84 adds smart notifications (per-user notification profiles, preferences, and daily/weekly digests), project board/list views, label and filter sharing with privacy (ACL), a notification dispatcher for approvals, assignments, and redemptions, and Home Assistant integration improvements
+  - v0.1.85 adds circle ID, privacy flag, and assignment strategy to chore details
+  - New app-side features (share extension, project widget, themes) need no server configuration
+  - SQLite/Postgres schema migrations run automatically at startup
+
 ## 0.0.20
 - Bump appVersion to v0.1.83
 - No chart template changes required for v0.1.81-v0.1.83. Notable upstream changes since v0.1.80:
