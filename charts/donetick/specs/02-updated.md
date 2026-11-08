@@ -1,14 +1,14 @@
 # Donetick Helm Chart: Executed and Kept Specifications
 
-Last updated: 2026-10-31
+Last updated: 2026-11-08
 Scope: Current implemented behavior that is still retained in the chart.
 
 ## 1) Chart Identity and Packaging
 
 - Chart name is donetick and is located under charts/donetick.
 - Chart type is application.
-- Chart version is 0.0.21.
-- App version is v0.1.85.
+- Chart version is 0.0.22.
+- App version is v0.1.86.
 - PostgreSQL dependency is declared with:
   - Name: postgresql
   - Version: 16.7.27
