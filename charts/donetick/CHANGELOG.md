@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.22
+- Bump appVersion to v0.1.86
+- No chart template changes required for v0.1.86: the upstream `config/selfhosted.yaml.example` schema is unchanged, so the chart's generated config remains valid and no new values are needed to enable the new features
+- Notable upstream changes since v0.1.85:
+  - Bulk creation of chores with validation and response handling (API-only, no server configuration required)
+  - Hardened asset and user image handling to prevent path traversal; no configuration change required
+  - SQLite/Postgres schema migrations run automatically at startup
+
 ## 0.0.21
 - Bump appVersion to v0.1.85
 - No chart template changes required for v0.1.84-v0.1.85: the upstream `config/selfhosted.yaml.example` schema is unchanged, so the chart's generated config remains valid and no new values are needed to enable the new features
