@@ -195,6 +195,27 @@ config:
     enableStats: true
     allowedOrigins:
       - '*'
+  webhook:
+    timeout: 5s
+    queueSize: 100
+    # Refuse private/LAN destinations. Enable this when the instance serves
+    # users other than the operator.
+    blockPrivateNetworks: false
+    # Allow webhooks to 127.0.0.1/::1, for a receiver on the same host.
+    allowLoopback: false
+    # Refuse plain http:// webhook URLs.
+    requireHttps: false
+    # When set, deliveries carry an X-Donetick-Signature HMAC-SHA256 header.
+    signingSecret: ''
+    rateLimitPerMinute: 60
+    failureThreshold: 10
+    failureCooldown: 15m
+    maxResponseBytes: 65536
+  # Built-in Model Context Protocol (MCP) server. When enabled, AI assistants
+  # can manage chores, labels, projects, filters, and things at /mcp using a
+  # Donetick API token.
+  mcp:
+    enabled: false
   telegram:
     token: ''
   pushover:

@@ -1,14 +1,14 @@
 # Donetick Helm Chart: Executed and Kept Specifications
 
-Last updated: 2026-11-08
+Last updated: 2026-11-24
 Scope: Current implemented behavior that is still retained in the chart.
 
 ## 1) Chart Identity and Packaging
 
 - Chart name is donetick and is located under charts/donetick.
 - Chart type is application.
-- Chart version is 0.0.22.
-- App version is v0.1.86.
+- Chart version is 0.0.23.
+- App version is v0.1.89.
 - PostgreSQL dependency is declared with:
   - Name: postgresql
   - Version: 16.7.27
@@ -34,7 +34,7 @@ Scope: Current implemented behavior that is still retained in the chart.
 - Runtime config is generated as selfhosted.yaml in a ConfigMap.
 - ConfigMap name is release-fullname with -config suffix.
 - Config file is mounted to /config/selfhosted.yaml via subPath.
-- Config contains server, logging, scheduler, email, oauth2, realtime, storage, telegram, and pushover blocks.
+- Config contains server, logging, scheduler, email, oauth2, realtime, webhook, mcp, storage, telegram, and pushover blocks.
 
 ## 5) JWT Secret Behavior
 
@@ -96,6 +96,14 @@ Scope: Current implemented behavior that is still retained in the chart.
 - Telegram token is configured at config.telegram.token.
 - Pushover token is configured at config.pushover.token.
 - Both are rendered in generated selfhosted.yaml.
+
+## 10a) Webhook and MCP Config Placement
+
+- Outbound webhook settings are configured under config.webhook and rendered in the generated selfhosted.yaml webhook block.
+  - config.webhook.timeout and config.webhook.queueSize map to timeout and queue_size.
+  - config.webhook.blockPrivateNetworks, allowLoopback, requireHttps, and signingSecret map to the corresponding security keys.
+  - config.webhook.rateLimitPerMinute, failureThreshold, failureCooldown, and maxResponseBytes map to the abuse-limit keys.
+- The built-in MCP server is configured at config.mcp.enabled (default false) and rendered as mcp.enabled; DT_MCP_ENABLED remains available as an environment override.
 
 ## 11) Removed or Superseded Spec Paths (Not Kept)
 

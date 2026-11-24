@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.22](https://img.shields.io/badge/Version-0.0.22-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.86](https://img.shields.io/badge/AppVersion-v0.1.86-informational?style=flat-square)
+![Version: 0.0.23](https://img.shields.io/badge/Version-0.0.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.89](https://img.shields.io/badge/AppVersion-v0.1.89-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -152,6 +152,17 @@ A Helm chart for Donetick self-hosted deployments
 | config.realtime.enableCompression | bool | `true` |  |
 | config.realtime.enableStats | bool | `true` |  |
 | config.realtime.allowedOrigins[0] | string | `"*"` |  |
+| config.webhook.timeout | string | `"5s"` |  |
+| config.webhook.queueSize | int | `100` |  |
+| config.webhook.blockPrivateNetworks | bool | `false` |  |
+| config.webhook.allowLoopback | bool | `false` |  |
+| config.webhook.requireHttps | bool | `false` |  |
+| config.webhook.signingSecret | string | `""` |  |
+| config.webhook.rateLimitPerMinute | int | `60` |  |
+| config.webhook.failureThreshold | int | `10` |  |
+| config.webhook.failureCooldown | string | `"15m"` |  |
+| config.webhook.maxResponseBytes | int | `65536` |  |
+| config.mcp.enabled | bool | `false` |  |
 | config.telegram.token | string | `""` |  |
 | config.pushover.token | string | `""` |  |
 | minio.enabled | bool | `false` |  |
