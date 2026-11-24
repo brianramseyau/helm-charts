@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.23
+- Bump appVersion to v0.1.89
+- Add `config.mcp.enabled` (default `false`), rendered as the upstream `mcp.enabled` key and equivalent to `DT_MCP_ENABLED`. Enables the new built-in Model Context Protocol server at `/mcp`, which authenticates with a Donetick API token.
+- Add `config.webhook.*` values for the upstream `webhook` block, including the new outbound-webhook security settings (`blockPrivateNetworks`, `allowLoopback`, `requireHttps`, `signingSecret`) and abuse limits (`rateLimitPerMinute`, `failureThreshold`, `failureCooldown`, `maxResponseBytes`). Defaults match upstream and preserve existing behavior.
+- Notable upstream changes since v0.1.86:
+  - Built-in MCP server (opt-in), reward auto-approval and API tokens, and approved-redemption webhook events
+  - Separate webhook events with stalled-response handling, throttling, and product-ownership-filtered subscriptions
+  - Scheduler fixes for day-of-the-month timezone comparison and "always" chores
+  - Due-date clearing, completion-window panic fix, calendar VEVENT fixes, and S3 deletion fixes
+  - SQLite/Postgres schema migrations run automatically at startup
+
 ## 0.0.22
 - Bump appVersion to v0.1.86
 - No chart template changes required for v0.1.86: the upstream `config/selfhosted.yaml.example` schema is unchanged, so the chart's generated config remains valid and no new values are needed to enable the new features

@@ -87,6 +87,19 @@ data:
         {{- range .Values.config.realtime.allowedOrigins }}
         - {{ . | quote }}
         {{- end }}
+    webhook:
+      timeout: {{ .Values.config.webhook.timeout | quote }}
+      queue_size: {{ .Values.config.webhook.queueSize }}
+      block_private_networks: {{ .Values.config.webhook.blockPrivateNetworks }}
+      allow_loopback: {{ .Values.config.webhook.allowLoopback }}
+      require_https: {{ .Values.config.webhook.requireHttps }}
+      signing_secret: {{ .Values.config.webhook.signingSecret | quote }}
+      rate_limit_per_minute: {{ .Values.config.webhook.rateLimitPerMinute }}
+      failure_threshold: {{ .Values.config.webhook.failureThreshold }}
+      failure_cooldown: {{ .Values.config.webhook.failureCooldown | quote }}
+      max_response_bytes: {{ .Values.config.webhook.maxResponseBytes }}
+    mcp:
+      enabled: {{ .Values.config.mcp.enabled }}
     storage:
       storage_type: {{ .Values.storage.mode | quote }}
       {{- if eq .Values.storage.mode "local" }}
