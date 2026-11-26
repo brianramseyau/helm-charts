@@ -4,6 +4,8 @@
 - Switch the bundled object storage image from `quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z` to `pgsty/silo:RELEASE.2026-11-12T00-00-00Z`. PGSTY Silo is an actively maintained MinIO fork that keeps the `MINIO_*` environment variables, S3 API, on-disk format, and `/usr/bin/mc` client interface, so it is a drop-in replacement
 - Keep the `minio.*` values key and all resource, label, service, and PVC names unchanged, so existing deployments upgrade in place and retain their data; no values migration is required
 - Remove the redundant `mc admin policy attach ... readwrite --user <root>` call from the bundled server's post-start hook; donetick connects as the root user, which already has full access
+- Add `minio.updateStrategy` (default `type: Recreate`) for the bundled Deployment. Its data volume is `ReadWriteOnce` by default, so the old pod must stop before its replacement starts; this avoids a stuck rollout and prevents two servers from writing the same volume. Override it for shared (RWX) storage
+- Upgrade note: when overriding the bundled image, set `minio.image.repository` and `minio.image.tag` together. A tag-only override keeps the new default repository, and the old `RELEASE.2025-04-22T22-12-26Z` tag does not exist in `pgsty/silo`; a repository-only override to upstream MinIO will not have the new Silo tag
 - To stay on upstream MinIO, override `minio.image.repository` (for example `quay.io/minio/minio`) and `minio.image.tag`
 
 ## 0.0.23

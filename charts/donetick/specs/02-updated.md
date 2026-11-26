@@ -70,6 +70,8 @@ Scope: Current implemented behavior that is still retained in the chart.
 - The bundled S3-compatible object store is optional and disabled by default.
 - The default image is pgsty/silo with tag RELEASE.2026-11-12T00-00-00Z. PGSTY Silo is an actively maintained MinIO fork that preserves the MINIO_* environment variables, S3 API, on-disk format, and /usr/bin/mc client interface, making it a drop-in replacement.
 - The minio.* values key and all resource, label, service, and PVC names are kept for backward compatibility, so existing deployments upgrade in place and retain data. Upstream MinIO remains available by overriding minio.image.repository and minio.image.tag.
+- The bundled Deployment strategy defaults to Recreate via minio.updateStrategy.type because its default data volume is ReadWriteOnce; the old pod terminates before its replacement starts.
+- Image overrides should set minio.image.repository and minio.image.tag together. Tag-only overrides retain the new default repository, and the previous MinIO tag does not exist in pgsty/silo.
 - Includes optional persistence and optional ingress.
 - In remote storage mode, when the bundled store is enabled and storage.remote.endpoint is empty:
   - Endpoint is auto-computed to the internal service.

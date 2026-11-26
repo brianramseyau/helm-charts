@@ -169,6 +169,7 @@ A Helm chart for Donetick self-hosted deployments
 | minio.image.repository | string | `"pgsty/silo"` |  |
 | minio.image.tag | string | `"RELEASE.2026-11-12T00-00-00Z"` |  |
 | minio.image.pullPolicy | string | `"IfNotPresent"` |  |
+| minio.updateStrategy.type | string | `"Recreate"` |  |
 | minio.rootUser | string | `"minioadmin"` |  |
 | minio.rootPassword | string | `"minioadmin"` |  |
 | minio.bucketName | string | `"donetick"` |  |

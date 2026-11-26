@@ -229,10 +229,17 @@ config:
 # minio.image.repository to quay.io/minio/minio and pin a suitable tag.
 minio:
   enabled: false
+  # Override repository and tag together: a tag-only override keeps this
+  # default repository, so pin a tag that exists in that repository.
   image:
     repository: pgsty/silo
     tag: RELEASE.2026-11-12T00-00-00Z
     pullPolicy: IfNotPresent
+  # The bundled store uses a ReadWriteOnce data volume by default, so the
+  # existing pod must stop before its replacement starts. Recreate avoids a
+  # stuck rollout and prevents two servers from mounting the same volume.
+  updateStrategy:
+    type: Recreate
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
