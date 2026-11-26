@@ -9,6 +9,7 @@
   `kubectl -n <namespace> patch deployment <minio-deployment> --type=merge -p '{"spec":{"strategy":{"type":"Recreate","rollingUpdate":null}}}'`
   The patch does not restart pods. Helm 3 client-side-apply releases do not need this step
 - Upgrade note: when overriding the bundled image, set `minio.image.repository` and `minio.image.tag` together. A tag-only override keeps the new default repository, and the old `RELEASE.2025-04-22T22-12-26Z` tag does not exist in `pgsty/silo`; a repository-only override to upstream MinIO will not have the new Silo tag
+- Upgrade note: `helm upgrade --reuse-values` keeps the old chart's default image, so an upgrade from 0.0.23 keeps `quay.io/minio/minio` instead of switching to Silo. To use Silo with `--reuse-values`, set both `minio.image.repository=pgsty/silo` and `minio.image.tag=RELEASE.2026-11-12T00-00-00Z`
 - To stay on upstream MinIO, override `minio.image.repository` (for example `quay.io/minio/minio`) and `minio.image.tag`
 
 ## 0.0.23

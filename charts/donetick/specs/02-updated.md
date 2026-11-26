@@ -72,6 +72,7 @@ Scope: Current implemented behavior that is still retained in the chart.
 - The minio.* values key and all resource, label, service, and PVC names are kept for backward compatibility, so existing deployments upgrade in place and retain data. Upstream MinIO remains available by overriding minio.image.repository and minio.image.tag.
 - The bundled Deployment strategy defaults to Recreate via minio.updateStrategy.type because its default data volume is ReadWriteOnce; the old pod terminates before its replacement starts.
 - The template also defaults a missing minio.updateStrategy to Recreate, covering helm upgrade --reuse-values releases that predate the value.
+- With --reuse-values, Helm keeps the old chart's default image. An upgrade from 0.0.23 keeps quay.io/minio/minio. To use Silo, set both minio.image.repository=pgsty/silo and minio.image.tag=RELEASE.2026-11-12T00-00-00Z.
 - Helm 4 server-side-apply upgrade note: clear the Kubernetes-defaulted spec.strategy.rollingUpdate before switching to Recreate:
   `kubectl -n <namespace> patch deployment <minio-deployment> --type=merge -p '{"spec":{"strategy":{"type":"Recreate","rollingUpdate":null}}}'`
   The patch does not restart pods. Helm 3 client-side-apply releases are unaffected.
