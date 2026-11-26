@@ -9,10 +9,9 @@ metadata:
     app.kubernetes.io/component: minio
 spec:
   replicas: 1
-  {{- with .Values.minio.updateStrategy }}
+  {{- $strategy := .Values.minio.updateStrategy | default (dict "type" "Recreate") }}
   strategy:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- toYaml $strategy | nindent 4 }}
   selector:
     matchLabels:
       {{- include "minio.selectorLabels" . | nindent 6 }}

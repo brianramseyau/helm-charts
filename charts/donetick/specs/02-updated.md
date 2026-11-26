@@ -71,6 +71,10 @@ Scope: Current implemented behavior that is still retained in the chart.
 - The default image is pgsty/silo with tag RELEASE.2026-11-12T00-00-00Z. PGSTY Silo is an actively maintained MinIO fork that preserves the MINIO_* environment variables, S3 API, on-disk format, and /usr/bin/mc client interface, making it a drop-in replacement.
 - The minio.* values key and all resource, label, service, and PVC names are kept for backward compatibility, so existing deployments upgrade in place and retain data. Upstream MinIO remains available by overriding minio.image.repository and minio.image.tag.
 - The bundled Deployment strategy defaults to Recreate via minio.updateStrategy.type because its default data volume is ReadWriteOnce; the old pod terminates before its replacement starts.
+- The template also defaults a missing minio.updateStrategy to Recreate, covering helm upgrade --reuse-values releases that predate the value.
+- Helm 4 server-side-apply upgrade note: clear the Kubernetes-defaulted spec.strategy.rollingUpdate before switching to Recreate:
+  `kubectl -n <namespace> patch deployment <minio-deployment> --type=merge -p '{"spec":{"strategy":{"type":"Recreate","rollingUpdate":null}}}'`
+  The patch does not restart pods. Helm 3 client-side-apply releases are unaffected.
 - Image overrides should set minio.image.repository and minio.image.tag together. Tag-only overrides retain the new default repository, and the previous MinIO tag does not exist in pgsty/silo.
 - Includes optional persistence and optional ingress.
 - In remote storage mode, when the bundled store is enabled and storage.remote.endpoint is empty:

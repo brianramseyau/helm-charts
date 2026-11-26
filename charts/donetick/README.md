@@ -169,7 +169,7 @@ A Helm chart for Donetick self-hosted deployments
 | minio.image.repository | string | `"pgsty/silo"` |  |
 | minio.image.tag | string | `"RELEASE.2026-11-12T00-00-00Z"` |  |
 | minio.image.pullPolicy | string | `"IfNotPresent"` |  |
-| minio.updateStrategy.type | string | `"Recreate"` |  |
+| minio.updateStrategy | object | `{"type":"Recreate"}` | Deployment strategy for the bundled store. Defaults to Recreate because its data volume is ReadWriteOnce and standalone Silo coordinates locks in process memory. For Helm 4 server-side-apply upgrades, clear the defaulted rollingUpdate field first: `kubectl -n <namespace> patch deployment <minio-deployment> --type=merge -p '{"spec":{"strategy":{"type":"Recreate", "rollingUpdate":null}}}'` (see CHANGELOG 0.0.24). |
 | minio.rootUser | string | `"minioadmin"` |  |
 | minio.rootPassword | string | `"minioadmin"` |  |
 | minio.bucketName | string | `"donetick"` |  |
