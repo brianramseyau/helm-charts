@@ -1,13 +1,13 @@
 # Donetick Helm Chart: Executed and Kept Specifications
 
-Last updated: 2026-11-24
+Last updated: 2026-11-26
 Scope: Current implemented behavior that is still retained in the chart.
 
 ## 1) Chart Identity and Packaging
 
 - Chart name is donetick and is located under charts/donetick.
 - Chart type is application.
-- Chart version is 0.0.23.
+- Chart version is 0.0.24.
 - App version is v0.1.89.
 - PostgreSQL dependency is declared with:
   - Name: postgresql
@@ -65,14 +65,22 @@ Scope: Current implemented behavior that is still retained in the chart.
   - Uses bucket, region, base path, endpoint, access key, and secret key values.
   - Supports public host, max user storage, and max file size.
 
-## 8) MinIO Optional Deployment
+## 8) Bundled Object Storage (PGSTY Silo / MinIO)
 
-- MinIO is optional and disabled by default.
-- MinIO image defaults to quay.io/minio/minio with tag RELEASE.2025-04-22T22-12-26Z.
+- The bundled S3-compatible object store is optional and disabled by default.
+- The default image is pgsty/silo with tag RELEASE.2026-11-12T00-00-00Z. PGSTY Silo is an actively maintained MinIO fork that preserves the MINIO_* environment variables, S3 API, on-disk format, and /usr/bin/mc client interface, making it a drop-in replacement.
+- The minio.* values key and all resource, label, service, and PVC names are kept for backward compatibility, so existing deployments upgrade in place and retain data. Upstream MinIO remains available by overriding minio.image.repository and minio.image.tag.
+- The bundled Deployment strategy defaults to Recreate via minio.updateStrategy.type because its default data volume is ReadWriteOnce; the old pod terminates before its replacement starts.
+- The template also defaults a missing minio.updateStrategy to Recreate, covering helm upgrade --reuse-values releases that predate the value.
+- With --reuse-values, Helm keeps the old chart's default image. An upgrade from 0.0.23 keeps quay.io/minio/minio. To use Silo, set both minio.image.repository=pgsty/silo and minio.image.tag=RELEASE.2026-11-12T00-00-00Z.
+- Helm 4 server-side-apply upgrade note: clear the Kubernetes-defaulted spec.strategy.rollingUpdate before switching to Recreate:
+  `kubectl -n <namespace> patch deployment <minio-deployment> --type=merge -p '{"spec":{"strategy":{"type":"Recreate","rollingUpdate":null}}}'`
+  The patch does not restart pods. Helm 3 client-side-apply releases are unaffected.
+- Image overrides should set minio.image.repository and minio.image.tag together. Tag-only overrides retain the new default repository, and the previous MinIO tag does not exist in pgsty/silo.
 - Includes optional persistence and optional ingress.
-- In remote storage mode, when MinIO is enabled and storage.remote.endpoint is empty:
-  - Endpoint is auto-computed to the internal MinIO service.
-  - Access and secret keys default to MinIO root credentials.
+- In remote storage mode, when the bundled store is enabled and storage.remote.endpoint is empty:
+  - Endpoint is auto-computed to the internal service.
+  - Access and secret keys default to the bundled store's root credentials.
 
 ## 9) OAuth2 Secret Reference Pattern
 

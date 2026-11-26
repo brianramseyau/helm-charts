@@ -9,6 +9,9 @@ metadata:
     app.kubernetes.io/component: minio
 spec:
   replicas: 1
+  {{- $strategy := .Values.minio.updateStrategy | default (dict "type" "Recreate") }}
+  strategy:
+    {{- toYaml $strategy | nindent 4 }}
   selector:
     matchLabels:
       {{- include "minio.selectorLabels" . | nindent 6 }}
@@ -47,7 +50,6 @@ spec:
                     sleep 5;
                     /usr/bin/mc alias set myminio http://localhost:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
                     /usr/bin/mc mb myminio/${BUCKET_NAME};
-                    /usr/bin/mc admin policy attach myminio readwrite --user ${MINIO_ROOT_USER}
                     exit 0;
           ports:
             - name: api
