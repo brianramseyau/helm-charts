@@ -1,6 +1,6 @@
 # donetick
 
-![Version: 0.0.23](https://img.shields.io/badge/Version-0.0.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.89](https://img.shields.io/badge/AppVersion-v0.1.89-informational?style=flat-square)
+![Version: 0.0.24](https://img.shields.io/badge/Version-0.0.24-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.89](https://img.shields.io/badge/AppVersion-v0.1.89-informational?style=flat-square)
 
 A Helm chart for Donetick self-hosted deployments
 
@@ -166,8 +166,8 @@ A Helm chart for Donetick self-hosted deployments
 | config.telegram.token | string | `""` |  |
 | config.pushover.token | string | `""` |  |
 | minio.enabled | bool | `false` |  |
-| minio.image.repository | string | `"quay.io/minio/minio"` |  |
-| minio.image.tag | string | `"RELEASE.2025-04-22T22-12-26Z"` |  |
+| minio.image.repository | string | `"pgsty/silo"` |  |
+| minio.image.tag | string | `"RELEASE.2026-11-12T00-00-00Z"` |  |
 | minio.image.pullPolicy | string | `"IfNotPresent"` |  |
 | minio.rootUser | string | `"minioadmin"` |  |
 | minio.rootPassword | string | `"minioadmin"` |  |

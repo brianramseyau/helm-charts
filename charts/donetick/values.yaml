@@ -221,21 +221,27 @@ config:
   pushover:
     token: ''
 
+# Bundled S3-compatible object storage. Deploys PGSTY Silo (a maintained MinIO
+# fork) by default; Silo keeps MinIO's MINIO_* environment variables, S3 API,
+# and on-disk format, so upgrades happen in place and existing data is
+# preserved. The `minio.*` value names and resource names are intentionally
+# kept for backward compatibility. To stay on upstream MinIO instead, set
+# minio.image.repository to quay.io/minio/minio and pin a suitable tag.
 minio:
   enabled: false
   image:
-    repository: quay.io/minio/minio
-    tag: RELEASE.2025-04-22T22-12-26Z
+    repository: pgsty/silo
+    tag: RELEASE.2026-11-12T00-00-00Z
     pullPolicy: IfNotPresent
   rootUser: minioadmin
   rootPassword: minioadmin
   bucketName: donetick
-  # Sets MINIO_DOMAIN on the bundled MinIO server, enabling virtual-hosted-
-  # style (bucket.domain) requests from clients outside the cluster (e.g.
-  # via an ingress host with its own matching DNS wildcard and TLS cert).
-  # Donetick's own connection to this MinIO always uses path-style and is
-  # unaffected by this setting. Leave empty unless you need that external
-  # virtual-hosted-style access.
+  # Sets MINIO_DOMAIN on the bundled object storage server, enabling
+  # virtual-hosted-style (bucket.domain) requests from clients outside the
+  # cluster (e.g. via an ingress host with its own matching DNS wildcard and
+  # TLS cert). Donetick's own connection to this server always uses path-style
+  # and is unaffected by this setting. Leave empty unless you need that
+  # external virtual-hosted-style access.
   domain: ''
   service:
     type: ClusterIP

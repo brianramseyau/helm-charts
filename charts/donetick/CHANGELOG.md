@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.24
+- Switch the bundled object storage image from `quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z` to `pgsty/silo:RELEASE.2026-11-12T00-00-00Z`. PGSTY Silo is an actively maintained MinIO fork that keeps the `MINIO_*` environment variables, S3 API, on-disk format, and `/usr/bin/mc` client interface, so it is a drop-in replacement
+- Keep the `minio.*` values key and all resource, label, service, and PVC names unchanged, so existing deployments upgrade in place and retain their data; no values migration is required
+- Remove the redundant `mc admin policy attach ... readwrite --user <root>` call from the bundled server's post-start hook; donetick connects as the root user, which already has full access
+- To stay on upstream MinIO, override `minio.image.repository` (for example `quay.io/minio/minio`) and `minio.image.tag`
+
 ## 0.0.23
 - Bump appVersion to v0.1.89
 - Add `config.mcp.enabled` (default `false`), rendered as the upstream `mcp.enabled` key and equivalent to `DT_MCP_ENABLED`. Enables the new built-in Model Context Protocol server at `/mcp`, which authenticates with a Donetick API token.
